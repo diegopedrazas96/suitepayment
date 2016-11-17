@@ -1,0 +1,118 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                tools:context=".Configuration" >
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginLeft="5dp" android:layout_marginRight="5dp" android:layout_marginTop="5dp"
+            android:layout_above="@+id/tableRow" android:id="@+id/linearLayout">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/configuration_private_service"
+                android:textAppearance="@android:style/TextAppearance.Medium" />
+
+        <EditText
+                android:id="@+id/privateService"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="text" >
+
+            <requestFocus />
+        </EditText>
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/configuration_public_service"
+                android:textAppearance="@android:style/TextAppearance.Medium" />
+
+        <EditText
+                android:id="@+id/publicService"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="text" >
+        </EditText>
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/configuration_update_app"
+                android:textAppearance="@android:style/TextAppearance.Medium" />
+
+        <EditText
+                android:id="@+id/updateApp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="text" >
+        </EditText>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/printer_mac"
+                android:textAppearance="@android:style/TextAppearance.Medium" />
+
+        <TableRow android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:weightSum="1" >
+            <EditText
+                    android:id="@+id/printerMAC"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:ems="10"
+                    android:inputType="text" >
+            </EditText>
+            <Button
+                    android:id="@+id/btnSearch"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.3"
+                    android:text="@string/search"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+        </TableRow>
+
+
+
+    </LinearLayout>
+
+    <TableRow
+            android:id="@+id/tableRow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="0dp"
+            android:baselineAligned="true"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+
+            android:weightSum="1" android:layout_alignParentBottom="true">
+
+        <com.gc.materialdesign.views.ButtonRectangle
+                android:id="@+id/btnCancel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/status_cancel"
+                android:layout_weight="0.5"
+                android:text="@string/cancel" />
+
+        <com.gc.materialdesign.views.ButtonRectangle
+                android:id="@+id/btnSave"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/status_inprocess"
+                android:layout_weight="0.5"
+                android:text="@string/save" />
+    </TableRow>
+
+
+</RelativeLayout>

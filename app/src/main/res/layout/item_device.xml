@@ -1,0 +1,30 @@
+<TableRow xmlns:android="http://schemas.android.com/apk/res/android"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:background="@drawable/list_selector"
+          android:clickable="true"
+          android:focusable="true"
+          android:focusableInTouchMode="true"
+          android:padding="5dp"
+          android:weightSum="1.0" >
+
+    <TextView
+            android:id="@+id/name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.30"
+            android:gravity="left|center_vertical"
+            android:text="@string/device_name"
+            android:maxLines="1"/>
+
+    <TextView
+            android:id="@+id/mac"
+            android:layout_width="0dp"
+            android:layout_weight="0.70"
+            android:gravity="left|center_vertical"
+            android:maxLines="1"
+            android:text="@string/device_mac" />
+
+
+
+</TableRow>

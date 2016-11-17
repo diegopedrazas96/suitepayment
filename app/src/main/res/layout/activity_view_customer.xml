@@ -1,0 +1,294 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+
+            android:layout_alignParentTop="true"
+            android:orientation="vertical">
+
+        <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:weightSum="1">
+
+            <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.3"
+                    android:text="@string/name"/>
+
+            <EditText
+                    android:id="@+id/custETName"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:ems="10"
+                    android:editable="false"
+                    android:hint="@string/name_sample"
+                    android:inputType="textCapCharacters"/>
+
+        </TableRow>
+        <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:weightSum="1">
+
+            <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.3"
+                    android:text="@string/corporate_name"/>
+
+            <EditText
+                    android:id="@+id/custETCorporateName"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:ems="10"
+                    android:editable="false"
+                    android:hint="@string/name_sample"
+                    android:inputType="textCapCharacters"/>
+
+        </TableRow>
+        <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:weightSum="1">
+
+            <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.3"
+                    android:text="@string/nit"/>
+
+            <EditText
+                    android:id="@+id/custETNit"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:ems="10"
+                    android:editable="false"
+                    android:hint="@string/nit_sample"
+                    android:inputType="number"/>
+
+        </TableRow>
+
+        <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:weightSum="1">
+            <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.3"
+                    android:text="@string/address"/>
+
+            <EditText
+                    android:id="@+id/custETAddress"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:ems="10"
+                    android:editable="false"
+                    android:hint="@string/address"
+                    android:inputType="textCapCharacters"/>
+
+        </TableRow>
+        <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:weightSum="1">
+            <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.3"
+                    android:text="@string/address_between"/>
+
+            <EditText
+                    android:id="@+id/custETBetween"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:ems="10"
+                    android:editable="false"
+                    android:hint="@string/address_between"
+                    android:inputType="textCapCharacters"/>
+
+        </TableRow>
+        <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:weightSum="1">
+            <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.3"
+                    android:text="@string/address_reference"/>
+
+            <EditText
+                    android:id="@+id/custETReference"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:ems="10"
+                    android:editable="false"
+                    android:hint="@string/address_reference"
+                    android:inputType="textCapCharacters"/>
+
+        </TableRow>
+        <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:weightSum="1">
+            <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.3"
+                    android:text="@string/phone"/>
+
+            <EditText
+                    android:id="@+id/custETPhone"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:ems="10"
+                    android:editable="false"
+                    android:inputType="number"/>
+
+
+            <EditText
+                    android:id="@+id/custETPhoneInt"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.2"
+                    android:ems="10"
+                    android:editable="false"
+                    android:inputType="number"/>
+
+        </TableRow>
+        <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:weightSum="1">
+
+            <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.3"
+                    android:text="@string/phone_mobile"/>
+
+            <EditText
+                    android:id="@+id/custETPhoneMobile"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:ems="10"
+                    android:editable="false"
+                    android:inputType="number"/>
+
+        </TableRow>
+
+
+
+
+        <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:id="@+id/custTRCord"
+                android:focusableInTouchMode="false"
+                android:weightSum="1">
+
+            <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.18"
+                    android:text="@string/latitud"/>
+
+            <EditText
+                    android:id="@+id/custEDLat"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.32"
+                    android:enabled="false"
+                    android:ems="10"
+                    android:hint="@string/cero_double"
+                    android:inputType="text"/>
+            <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.18"
+                    android:text="@string/longitud"/>
+
+            <EditText
+                    android:id="@+id/custEDLon"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.32"
+                    android:ems="10"
+                    android:hint="@string/cero_double"
+                    android:enabled="false"
+                    android:inputType="text"/>
+
+        </TableRow>
+    </LinearLayout>
+    <!--<TableLayout-->
+            <!--android:id="@+id/custTLButton"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="50dp"-->
+            <!--android:layout_alignParentBottom="true"-->
+            <!--android:layout_alignParentLeft="true"-->
+            <!--android:layout_alignParentRight="false">-->
+        <!--<TableRow-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:background="@color/light_blue"-->
+                <!--android:weightSum="1">-->
+            <!--<com.gc.materialdesign.views.ButtonRectangle-->
+                    <!--android:id="@+id/custBTNew"-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_weight="0.33"-->
+                    <!--android:background="@color/blue"-->
+                    <!--android:text="@string/news">-->
+            <!--</com.gc.materialdesign.views.ButtonRectangle>-->
+            <!--<com.gc.materialdesign.views.ButtonRectangle-->
+                    <!--android:id="@+id/custBTBranch"-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_weight="0.33"-->
+                    <!--android:background="@color/blue"-->
+                    <!--android:text="@string/branch_add"-->
+                    <!--android:visibility="invisible">-->
+            <!--</com.gc.materialdesign.views.ButtonRectangle>-->
+            <!--<com.gc.materialdesign.views.ButtonRectangle-->
+                    <!--android:id="@+id/custBTSave"-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_weight="0.33"-->
+                    <!--android:background="@color/blue"-->
+                    <!--android:text="@string/save">-->
+            <!--</com.gc.materialdesign.views.ButtonRectangle>-->
+        <!--</TableRow>-->
+    <!--</TableLayout>-->
+
+</RelativeLayout>

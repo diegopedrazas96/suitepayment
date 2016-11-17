@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="blue">#FF0075BE</color>
+    <color name="blue50">#880075BE</color>
+    <color name="light_blue">#FF0091CF</color>
+    <color name="dark_blue">#FF004671</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="gray">#FF666666</color>
+    <color name="orange">#FF4500</color>
+    <color name="black">#000000</color>
+    <color name="light_gray">#FFEEEEEE</color>
+    <color name="red">#FFb94a48</color>
+    <color name="status_cancel">#FFb94a48</color>
+    <color name="status_pending">#FFc09853</color>
+    <color name="status_inprocess">#FF468847</color>
+    <color name="status_success">#FF3a87ad</color>
+</resources>

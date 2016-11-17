@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/location" android:title="@string/location"/>
+    <item android:id="@+id/datoscliente" android:title="@string/customer_info"/>
+    <item android:id="@+id/llamar" android:title="@string/call_customer"/>
+</menu>
