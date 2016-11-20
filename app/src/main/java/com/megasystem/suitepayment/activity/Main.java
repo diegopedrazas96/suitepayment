@@ -17,6 +17,7 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.TextView;
 import com.megasystem.suitepayment.R;
+import com.megasystem.suitepayment.entity.sale.Pago;
 
 public class Main extends AppCompatActivity {
 
@@ -43,25 +44,27 @@ public class Main extends AppCompatActivity {
 
                 Intent intent;
                 switch (arg2) {
-                    /**
-                     * Pedidos
-                     */
+
                     case 0:
                         intent = new Intent(Main.this, Empleado.class);
                         startActivity(intent);
                         break;
-                   /* case 7:
-                        intent = new Intent(Main.this, Options.class);
+                    case 1:
+                        intent = new Intent(Main.this, Pagos.class);
                         startActivity(intent);
                         break;
-                    case 8:
-                        intent = new Intent(Main.this, ReportsMobile.class);
+                    case 2:
+                        intent = new Intent(Main.this, Gastos.class);
                         startActivity(intent);
                         break;
-                    case 9:
-                        intent = new Intent(Main.this, Catalog.class);
+                    case 3:
+                        intent = new Intent(Main.this, Clasificadores.class);
                         startActivity(intent);
-                        break;*/
+                        break;
+                    case 4:
+                        intent = new Intent(Main.this, Configuration.class);
+                        startActivity(intent);
+                        break;
                 }
 
 
@@ -119,8 +122,8 @@ public class Main extends AppCompatActivity {
         }
 
         private Integer[] mThumbIds = { R.mipmap.clients, R.mipmap.invoice,
-                R.mipmap.cart , R.mipmap.options};
+                R.mipmap.cart ,R.mipmap.payments, R.mipmap.options};
         private Integer[] mThumbLabels = { R.string.empleados, R.string.pagos,
-                R.string.gastos,R.string.configuracion };
+                R.string.gastos,R.string.clasifier,R.string.configuracion };
     }
 }
