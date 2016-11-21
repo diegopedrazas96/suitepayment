@@ -2,12 +2,14 @@ package com.megasystem.suitepayment.entity.sale;
 
 import com.megasystem.suitepayment.entity.Entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by usuario on 13/11/2016.
  */
-public class Gasto extends Entity {
+public class Gasto extends Entity implements Serializable{
+
     private Long tipoIdc;
     private Date fecha;
     private String descripcion;

@@ -1,4 +1,4 @@
-package com.megasystem.suitedelivery;
+package com.megasystem.suitepayment;
 
 import org.junit.Test;
 

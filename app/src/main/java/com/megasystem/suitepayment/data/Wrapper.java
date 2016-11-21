@@ -35,7 +35,7 @@ public abstract class Wrapper<T> extends SQLiteOpenHelper {
     protected Context context;
 
     public Wrapper(Context context, Class<T> type) {
-        super(context, "database11.db", null, 1);
+        super(context, "database4.db", null, 1);
         this.type = type;
     }
 
@@ -298,13 +298,14 @@ public abstract class Wrapper<T> extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(getCreate(new Gasto()));
+
         db.execSQL(getCreate(new Customer()));
         db.execSQL(getCreate(new User()));
         db.execSQL(getCreate(new Empleado()));
         db.execSQL(getCreate(new MsClasificador()));
         db.execSQL(getCreate(new PsClasificador()));
         db.execSQL(getCreate(new Pago()));
+        db.execSQL(getCreate(new Gasto()));
     }
 
     @Override
