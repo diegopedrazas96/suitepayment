@@ -15,6 +15,10 @@
     <string name="salary">Salario:</string>
     <string name="employee_info">Datos Empleado</string>
     <string name="clasifier">Clasificadores</string>
+    <string name="spending_type">Tipo de Gasto</string>
+    <string name="description_hint">Gasto Gasolina.</string>
+    <string name="amount_text">Monto</string>
+    <string name="amount_hint">200 Bs.</string>
     <string name="salary_example">2000 Bs.</string>
     <string name="password">Código de Acceso</string>
     <string name="name">Nombre completo</string>

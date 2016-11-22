@@ -28,7 +28,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.7"
                     android:ems="10"
-                    android:editable="false"
+
                     android:hint="@string/name_sample"
                     android:inputType="textCapCharacters"/>
 
@@ -52,7 +52,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.7"
                     android:ems="10"
-                    android:editable="false"
+
                     android:hint="@string/address"
                     android:inputType="textCapCharacters"/>
 
@@ -75,7 +75,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.7"
                     android:ems="10"
-                    android:editable="false"
+
                     android:hint="@string/address_between"
                     android:inputType="textCapCharacters" android:text="@string/phone_mobil_sample"/>
 
@@ -98,7 +98,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.7"
                     android:ems="10"
-                    android:editable="false"
+
                     android:hint="@string/address_reference"
                     android:inputType="textCapCharacters" android:text="@string/salary_example"/>
 
@@ -114,6 +114,35 @@
 
 
     </LinearLayout>
+
+    <TableRow
+            android:id="@+id/tableRow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="0dp"
+            android:baselineAligned="true"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+
+            android:weightSum="1" android:layout_alignParentBottom="true">
+
+        <com.gc.materialdesign.views.ButtonRectangle
+                android:id="@+id/btnCancel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/status_cancel"
+                android:layout_weight="0.5"
+                android:text="@string/cancel" />
+
+        <com.gc.materialdesign.views.ButtonRectangle
+                android:id="@+id/btnSave"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/status_inprocess"
+                android:layout_weight="0.5"
+                android:text="@string/save" />
+    </TableRow>
 
 
 </RelativeLayout>
