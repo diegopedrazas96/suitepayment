@@ -13,6 +13,7 @@ import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.megasystem.suitepayment.Application;
 import com.megasystem.suitepayment.R;
 import com.megasystem.suitepayment.data.sale.DMsClasificador;
+import com.megasystem.suitepayment.entity.Action;
 import com.megasystem.suitepayment.entity.sale.MsClasificador;
 
 import java.security.MessageDigest;
@@ -28,11 +29,14 @@ public class Splash extends Activity {
         MsClasificador msClasificador = new MsClasificador();
        try {
            msClasificador.setDescripcion("Periodo");
+           msClasificador.setAction(Action.Insert);
            dalMsClasificador.save(msClasificador);
            msClasificador = new MsClasificador();
+           msClasificador.setAction(Action.Insert);
            msClasificador.setDescripcion("Gestion");
            dalMsClasificador.save(msClasificador);
            msClasificador = new MsClasificador();
+           msClasificador.setAction(Action.Insert);
            msClasificador.setDescripcion("Gasto");
            dalMsClasificador.save(msClasificador);
        }catch (Exception e){

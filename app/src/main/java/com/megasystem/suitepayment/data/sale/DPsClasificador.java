@@ -25,6 +25,9 @@ public class DPsClasificador extends Wrapper {
     public List<PsClasificador> list(String order) {
         return super.list("select * from psclasificador order by " + order);
     }
+    public List<PsClasificador> listbyMsClasifier(Long id) {
+        return super.list("select * from psclasificador where msclasificadorid= " + id);
+    }
 
     public PsClasificador get() {
         return (PsClasificador) this.get("select * from psclasificador");
