@@ -1,15 +1,14 @@
 package com.megasystem.suitepayment.activity;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.*;
+import com.gc.materialdesign.views.ButtonFloat;
 import com.megasystem.suitepayment.R;
 import com.megasystem.suitepayment.data.sale.DMsClasificador;
 import com.megasystem.suitepayment.data.sale.DPsClasificador;
@@ -23,18 +22,30 @@ public class Clasificadores extends AppCompatActivity {
     private ListView lvPsClasifier ;
     private List<MsClasificador> lstMsClasificador;
     private List<PsClasificador> lstPsClasificador;
+    private ButtonFloat btnFloat ;
+    private Dialog dialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clasificadores);
         lvMsClasifier = (ListView) findViewById(R.id.list);
         lvPsClasifier = (ListView) findViewById(R.id.list2);
+        btnFloat = (ButtonFloat) findViewById(R.id.add);
         DMsClasificador dalMsClasificador = new DMsClasificador(this,MsClasificador.class);
         lstMsClasificador = dalMsClasificador.list();
 
         lvMsClasifier.setAdapter(new Adapter(Clasificadores.this, lstMsClasificador));
         lvMsClasifier.setOnItemClickListener(new DrawerItemClickListener());
         //lvMsClasifier.setAdapter();
+        btnFloat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog = new Dialog(Clasificadores.this);
+                dialog.setContentView(R.layout.list_device);
+                dialog.setTitle(getString(R.string.device_list));
+                dialog.show();
+            }
+        });
     }
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
         @Override
@@ -64,16 +75,11 @@ public class Clasificadores extends AppCompatActivity {
         public View getView(int position, View convertView, ViewGroup parent) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View view = inflater.inflate(R.layout.item_device, null);
-            TextView txtCode = (TextView) view.findViewById(R.id.mac);
+
             TextView txtName = (TextView) view.findViewById(R.id.name);
             MsClasificador obj = lstMsClasificador.get(position);
             txtName.setText(obj.getDescripcion());
-            view.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
 
-                }
-            });
             return view;
         }
 
@@ -90,17 +96,12 @@ public class Clasificadores extends AppCompatActivity {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View view = inflater.inflate(R.layout.item_device, null);
-            TextView txtCode = (TextView) view.findViewById(R.id.mac);
+            View view = inflater.inflate(R.layout.item_basic, null);
+
             TextView txtName = (TextView) view.findViewById(R.id.name);
            PsClasificador obj = lstPsClasificador.get(position);
             txtName.setText(obj.getDescripcion());
-            view.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
 
-                }
-            });
             return view;
         }
 
