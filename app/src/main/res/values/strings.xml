@@ -18,10 +18,16 @@
     <string name="spending_type">Tipo de Gasto</string>
     <string name="description_hint">Gasto Gasolina.</string>
     <string name="amount_text">Monto</string>
+    <string name="period">Periodo</string>
+    <string name="month">Mes</string>
+    <string name="worker">Trabajador</string>
+    <string name="worker_hint">Pepe Martinez</string>
+    <string name="address_hint">Av. 21 de Mayo</string>
     <string name="amount_hint">200 Bs.</string>
     <string name="salary_example">2000 Bs.</string>
     <string name="password">Código de Acceso</string>
-    <string name="name">Nombre completo</string>
+    <string name="name">Nombre Completo</string>
+    <string name="edit">Editar</string>
     <string name="ci">Carnet de identidad</string>
     <string name="search">Buscar</string>
     <string name="menu_productlocal">Venta</string>

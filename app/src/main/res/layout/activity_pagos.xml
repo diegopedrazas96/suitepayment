@@ -20,8 +20,9 @@
             <TextView
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.3"
-                    android:text="@string/date"/>
+                    android:layout_weight="0.2"
+                    android:text="@string/date"
+                    android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"/>
 
             <EditText
                     android:id="@+id/etDate"
@@ -29,30 +30,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.7"
                     android:ems="10"
-                    android:inputType="textCapCharacters"/>
-
-        </TableRow>
-        <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
-                android:weightSum="1">
-
-            <TextView
-                    android:layout_width="0dip"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.3"
-                    android:text="@string/spending_type"/>
-
-            <TextView
-                    android:id="@+id/spPaymentType"
-                    android:layout_width="0dip"
-
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.7"
-                    android:ems="10"
-                     />
+                    android:inputType="textCapCharacters"
+                    android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"/>
 
         </TableRow>
         <TableRow
@@ -64,19 +43,84 @@
             <TextView
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.3"
-                    android:text="@string/description"/>
+                    android:layout_weight="0.25"
+                    android:text="@string/worker"
+                    android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"/>
 
             <EditText
                     android:id="@+id/etDescripcion"
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.7"
+                    android:layout_weight="0.50"
                     android:ems="10"
-                    android:hint="@string/description_hint"
-                    android:inputType="textCapCharacters" />
+                    android:hint="@string/worker_hint"
+                    android:inputType="textCapCharacters"
+                    android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"/>
+            <Button
+                    android:id="@+id/details"
+                    android:layout_width="wrap_content"
+                    android:background="@drawable/curve_button"
+                    android:textColor="@color/white"
+                    android:layout_height="26dp"
+                    android:layout_weight="0.13"
+                    android:layout_gravity="right|center_vertical"
+                    android:padding="0dp"
+                    android:text="@string/search"
+                    android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"/>
 
         </TableRow>
+        <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:weightSum="1">
+
+            <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.2"
+                    android:text="@string/period"
+                    android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"/>
+
+            <Spinner
+                    android:id="@+id/spPeriodType"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:ems="10"
+                    android:inputType="textCapCharacters"
+                    android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+                    android:spinnerMode="dropdown"/>
+
+        </TableRow>
+        <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:weightSum="1"
+        >
+
+            <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.2"
+                    android:text="@string/month"
+                    android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"/>
+
+            <Spinner
+                    android:id="@+id/spMonthType"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:ems="10"
+                    android:inputType="textCapCharacters"
+                    android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+                    android:spinnerMode="dropdown"/>
+
+        </TableRow>
+
         <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -86,8 +130,9 @@
             <TextView
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.3"
-                    android:text="@string/amount_text"/>
+                    android:layout_weight="0.2"
+                    android:text="@string/amount_text"
+                    android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"/>
 
             <EditText
                     android:id="@+id/etSalary"
@@ -96,6 +141,7 @@
                     android:layout_weight="0.7"
                     android:ems="10"
                     android:hint="@string/amount_hint"
+                    android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
                     android:inputType="textCapCharacters"/>
 
         </TableRow>

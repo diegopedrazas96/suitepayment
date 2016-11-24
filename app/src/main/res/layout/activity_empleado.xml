@@ -20,7 +20,8 @@
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.3"
-                    android:text="@string/name"/>
+                    android:text="@string/name"
+                    android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"/>
 
             <EditText
                     android:id="@+id/etName"
@@ -28,7 +29,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.7"
                     android:ems="10"
-
+                    android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
                     android:hint="@string/name_sample"
                     android:inputType="textCapCharacters"/>
 
@@ -44,6 +45,7 @@
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.3"
+                    android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
                     android:text="@string/address"/>
 
             <EditText
@@ -52,8 +54,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.7"
                     android:ems="10"
-
-                    android:hint="@string/address"
+                    android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+                    android:hint="@string/address_hint"
                     android:inputType="textCapCharacters"/>
 
         </TableRow>
@@ -67,6 +69,7 @@
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.3"
+                    android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
                     android:text="@string/phone"/>
 
             <EditText
@@ -75,7 +78,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.7"
                     android:ems="10"
-
+                    android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
                     android:hint="@string/address_between"
                     android:inputType="textCapCharacters" android:text="@string/phone_mobil_sample"/>
 
@@ -90,7 +93,8 @@
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.3"
-                    android:text="@string/address_reference"/>
+                    android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+                    android:text="@string/salary"/>
 
             <EditText
                     android:id="@+id/etSalary"
@@ -98,9 +102,9 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.7"
                     android:ems="10"
-
+                    android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
                     android:hint="@string/address_reference"
-                    android:inputType="textCapCharacters" android:text="@string/salary_example"/>
+                    android:inputType="numberDecimal" android:text="@string/salary_example"/>
 
         </TableRow>
         <TableRow
@@ -133,7 +137,8 @@
                 android:layout_height="wrap_content"
                 android:background="@color/status_cancel"
                 android:layout_weight="0.5"
-                android:text="@string/cancel" />
+                android:text="@string/cancel"
+                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"/>
 
         <com.gc.materialdesign.views.ButtonRectangle
                 android:id="@+id/btnSave"
@@ -141,7 +146,8 @@
                 android:layout_height="wrap_content"
                 android:background="@color/status_inprocess"
                 android:layout_weight="0.5"
-                android:text="@string/save" />
+                android:text="@string/save"
+                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"/>
     </TableRow>
 
 

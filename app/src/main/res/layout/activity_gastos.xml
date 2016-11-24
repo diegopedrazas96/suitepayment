@@ -21,7 +21,8 @@
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.3"
-                    android:text="@string/date"/>
+                    android:text="@string/date"
+                    android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"/>
 
             <EditText
                     android:id="@+id/etDate"
@@ -29,7 +30,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.7"
                     android:ems="10"
-                    android:inputType="textCapCharacters"/>
+                    android:inputType="textCapCharacters"
+                    android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"/>
 
         </TableRow>
         <TableRow
@@ -43,14 +45,16 @@
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.3"
-                    android:text="@string/spending_type"/>
+                    android:text="@string/spending_type"
+                    android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"/>
 
             <Spinner
-                    android:id="@+id/spPaymentType"
+                    android:id="@+id/spSpendingType"
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.7"
                     android:ems="10"
+                    android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
                     android:inputType="textCapCharacters" android:spinnerMode="dropdown"/>
 
         </TableRow>
@@ -64,6 +68,7 @@
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.3"
+                    android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
                     android:text="@string/description"/>
 
             <EditText
@@ -73,6 +78,7 @@
                     android:layout_weight="0.7"
                     android:ems="10"
                     android:hint="@string/description_hint"
+                    android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
                     android:inputType="textCapCharacters" />
 
         </TableRow>
@@ -86,15 +92,17 @@
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.3"
+                    android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
                     android:text="@string/amount_text"/>
 
             <EditText
-                    android:id="@+id/etSalary"
+                    android:id="@+id/etMonto"
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.7"
                     android:ems="10"
                     android:hint="@string/amount_hint"
+                    android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
                     android:inputType="textCapCharacters"/>
 
         </TableRow>
@@ -128,6 +136,8 @@
                 android:layout_height="wrap_content"
                 android:background="@color/status_cancel"
                 android:layout_weight="0.5"
+
+                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
                 android:text="@string/cancel" />
 
         <com.gc.materialdesign.views.ButtonRectangle
@@ -136,6 +146,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/status_inprocess"
                 android:layout_weight="0.5"
+                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
                 android:text="@string/save" />
     </TableRow>
 
