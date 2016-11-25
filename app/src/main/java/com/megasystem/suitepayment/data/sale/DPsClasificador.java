@@ -22,8 +22,8 @@ public class DPsClasificador extends Wrapper {
     }
 
     @SuppressWarnings("unchecked")
-    public List<PsClasificador> list(String order) {
-        return super.list("select * from psclasificador order by " + order);
+    public List<PsClasificador> list(int clasificadorId) {
+        return super.list("select * from psclasificador where msclasificadorId = " + clasificadorId);
     }
     public List<PsClasificador> listbyMsClasifier(Long id) {
         return super.list("select * from psclasificador where msclasificadorid= " + id);

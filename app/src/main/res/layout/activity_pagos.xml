@@ -48,7 +48,7 @@
                     android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"/>
 
             <EditText
-                    android:id="@+id/etDescripcion"
+                    android:id="@+id/etEmpleado"
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.50"
@@ -135,7 +135,7 @@
                     android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"/>
 
             <EditText
-                    android:id="@+id/etSalary"
+                    android:id="@+id/etMonto"
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.7"
