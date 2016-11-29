@@ -9,9 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
 import com.gc.materialdesign.views.ButtonFloat;
+import com.gc.materialdesign.views.ButtonRectangle;
 import com.megasystem.suitepayment.R;
 import com.megasystem.suitepayment.data.sale.DMsClasificador;
 import com.megasystem.suitepayment.data.sale.DPsClasificador;
+import com.megasystem.suitepayment.entity.Action;
 import com.megasystem.suitepayment.entity.sale.MsClasificador;
 import com.megasystem.suitepayment.entity.sale.PsClasificador;
 
@@ -23,6 +25,7 @@ public class Clasificadores extends AppCompatActivity {
     private List<MsClasificador> lstMsClasificador;
     private List<PsClasificador> lstPsClasificador;
     private ButtonFloat btnFloat ;
+    private MsClasificador objMsClasificador;
     private Dialog dialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,11 +44,44 @@ public class Clasificadores extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 dialog = new Dialog(Clasificadores.this);
-                dialog.setContentView(R.layout.list_device);
+                dialog.setContentView(R.layout.dialog_clasificador);
                 dialog.setTitle(getString(R.string.device_list));
+                final EditText etGroup = (EditText) dialog.findViewById(R.id.etGroup);
+                etGroup.setText(objMsClasificador.getDescripcion());
+                final EditText etDescripcion = (EditText) dialog.findViewById(R.id.etDescripcion);
+                ButtonRectangle btnSave = (ButtonRectangle) dialog.findViewById(R.id.btnSave);
+                ButtonRectangle btnCancel = (ButtonRectangle) dialog.findViewById(R.id.btnCancel);
+                btnCancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.cancel();
+                    }
+                });
+                btnSave.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        DPsClasificador dalClasificador = new DPsClasificador(Clasificadores.this,PsClasificador.class);
+                        PsClasificador objClasificador = new PsClasificador();
+                        objClasificador.setDescripcion(etDescripcion.getText().toString());
+                        objClasificador.setMsclasificadorId(objMsClasificador.getId());
+                        objClasificador.setAction(Action.Insert);
+                        dalClasificador.save(objClasificador);
+                        dialog.dismiss();
+                        Toast.makeText(Clasificadores.this, "Guardado Correctamente.!",Toast.LENGTH_SHORT).show();
+                        updateList();
+                    }
+                });
                 dialog.show();
             }
         });
+    }
+    private void updateList(){
+
+        MsClasificador item = objMsClasificador;
+        DPsClasificador dalProduct = new DPsClasificador(this,PsClasificador.class);
+        List<PsClasificador> lstProduct =  dalProduct.listbyMsClasifier(item.getId());
+        lstPsClasificador = lstProduct;
+        lvPsClasifier.setAdapter(new Adapter2(this,lstProduct));
     }
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
         @Override
@@ -54,6 +90,13 @@ public class Clasificadores extends AppCompatActivity {
         }
     }
     private void selectItem(int position) {
+        objMsClasificador = lstMsClasificador.get(position);
+        if(objMsClasificador.getId()== 1){
+            btnFloat.setVisibility(View.GONE);
+        }else{
+            btnFloat.setVisibility(View.VISIBLE);
+        }
+
         MsClasificador item = lstMsClasificador.get(position);
         DPsClasificador dalProduct = new DPsClasificador(this,PsClasificador.class);
         List<PsClasificador> lstProduct =  dalProduct.listbyMsClasifier(item.getId());
@@ -67,16 +110,16 @@ public class Clasificadores extends AppCompatActivity {
         private final Context context;
 
         public Adapter(Context context, List<MsClasificador> items) {
-            super(context, R.layout.item_syncronize, items);
+            super(context, R.layout.item_group, items);
             this.context = context;
         }
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View view = inflater.inflate(R.layout.item_device, null);
+            View view = inflater.inflate(R.layout.item_group, null);
 
-            TextView txtName = (TextView) view.findViewById(R.id.name);
+            TextView txtName = (TextView) view.findViewById(R.id.text_image);
             MsClasificador obj = lstMsClasificador.get(position);
             txtName.setText(obj.getDescripcion());
 
@@ -89,7 +132,7 @@ public class Clasificadores extends AppCompatActivity {
         private final Context context;
 
         public Adapter2(Context context, List<PsClasificador> items) {
-            super(context, R.layout.item_syncronize, items);
+            super(context, R.layout.item_basic, items);
             this.context = context;
         }
 

@@ -1,0 +1,56 @@
+<TableRow xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="0dip"
+    android:background="@android:drawable/list_selector_background"
+    android:clickable="true"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:padding="5dp"
+    android:weightSum="1.0" >
+
+    <TextView
+        android:id="@+id/empCode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.20"
+        android:minWidth="70dp"
+        android:text="@string/code" />
+
+    <TextView
+        android:id="@+id/empName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.30"
+        android:minWidth="128dp"
+        android:maxWidth="150dp"
+        android:text="@string/name" />
+
+    <TextView
+        android:id="@+id/pagar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.125"
+        android:gravity="center_vertical|center_horizontal"
+        android:minWidth="48dp"
+        android:text="@string/pagar" />
+
+
+    <TextView
+        android:id="@+id/pagado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.125"
+        android:gravity="center_vertical|center_horizontal"
+        android:minWidth="64dp"
+        android:text="@string/pagado" />
+
+    <TextView
+        android:id="@+id/saldo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.125"
+        android:gravity="center_vertical|center_horizontal"
+        android:minWidth="64dp"
+        android:text="@string/saldo"/>
+
+</TableRow>

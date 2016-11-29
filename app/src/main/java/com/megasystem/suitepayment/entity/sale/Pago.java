@@ -15,6 +15,8 @@ public class Pago extends Entity{
     private Long gestionIdc;
     private Double monto;
 
+
+
     public Long getEmpleadoId() {
         return empleadoId;
     }

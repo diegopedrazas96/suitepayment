@@ -23,7 +23,7 @@ public class DPsClasificador extends Wrapper {
 
     @SuppressWarnings("unchecked")
     public List<PsClasificador> list(int clasificadorId) {
-        return super.list("select * from psclasificador where msclasificadorId = " + clasificadorId);
+        return super.list("select * from psclasificador where msclasificadorid= " + clasificadorId);
     }
     public List<PsClasificador> listbyMsClasifier(Long id) {
         return super.list("select * from psclasificador where msclasificadorid= " + id);
@@ -33,7 +33,7 @@ public class DPsClasificador extends Wrapper {
         return (PsClasificador) this.get("select * from psclasificador");
     }
 
-    public PsClasificador getById(String idCliente) {
-        return (PsClasificador) this.get("select * from psclasificador where IdCliente= '" + idCliente+ "'");
+    public PsClasificador getById(Long idCliente) {
+        return (PsClasificador) this.get("select * from psclasificador where id= " + idCliente );
     }
 }

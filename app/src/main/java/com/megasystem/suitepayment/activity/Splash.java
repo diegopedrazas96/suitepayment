@@ -13,10 +13,13 @@ import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.megasystem.suitepayment.Application;
 import com.megasystem.suitepayment.R;
 import com.megasystem.suitepayment.data.sale.DMsClasificador;
+import com.megasystem.suitepayment.data.sale.DPsClasificador;
 import com.megasystem.suitepayment.entity.Action;
 import com.megasystem.suitepayment.entity.sale.MsClasificador;
+import com.megasystem.suitepayment.entity.sale.PsClasificador;
 
 import java.security.MessageDigest;
+import java.util.List;
 
 public class Splash extends Activity {
 
@@ -27,18 +30,108 @@ public class Splash extends Activity {
       //  getHashKey();
         DMsClasificador dalMsClasificador = new DMsClasificador(this, MsClasificador.class);
         MsClasificador msClasificador = new MsClasificador();
+        List<MsClasificador> lstMsClasificador = dalMsClasificador.list();
        try {
-           msClasificador.setDescripcion("Periodo");
-           msClasificador.setAction(Action.Insert);
-           dalMsClasificador.save(msClasificador);
-           msClasificador = new MsClasificador();
-           msClasificador.setAction(Action.Insert);
-           msClasificador.setDescripcion("Gestion");
-           dalMsClasificador.save(msClasificador);
-           msClasificador = new MsClasificador();
-           msClasificador.setAction(Action.Insert);
-           msClasificador.setDescripcion("Gasto");
-           dalMsClasificador.save(msClasificador);
+           if (lstMsClasificador.size() == 0) {
+               msClasificador.setDescripcion("Periodo");
+               msClasificador.setAction(Action.Insert);
+               dalMsClasificador.save(msClasificador);
+               DPsClasificador dalPsClasificador = new DPsClasificador(Splash.this, PsClasificador.class);
+               PsClasificador objClasificador = new PsClasificador();
+               objClasificador.setDescripcion("ENERO");
+               objClasificador.setEstado(1L);
+               objClasificador.setMsclasificadorId(1L);
+               objClasificador.setAction(Action.Insert);
+               dalPsClasificador.save(objClasificador);
+               objClasificador = new PsClasificador();
+               objClasificador.setDescripcion("FEBRERO");
+               objClasificador.setEstado(1L);
+               objClasificador.setMsclasificadorId(1L);
+               objClasificador.setAction(Action.Insert);
+               dalPsClasificador.save(objClasificador);
+
+               objClasificador = new PsClasificador();
+               objClasificador.setDescripcion("MARZO");
+               objClasificador.setEstado(1L);
+               objClasificador.setMsclasificadorId(1L);
+               objClasificador.setAction(Action.Insert);
+               dalPsClasificador.save(objClasificador);
+
+               objClasificador = new PsClasificador();
+               objClasificador.setDescripcion("ABRIL");
+               objClasificador.setEstado(1L);
+               objClasificador.setMsclasificadorId(1L);
+               objClasificador.setAction(Action.Insert);
+               dalPsClasificador.save(objClasificador);
+
+               objClasificador = new PsClasificador();
+               objClasificador.setDescripcion("MAYO");
+               objClasificador.setEstado(1L);
+               objClasificador.setMsclasificadorId(1L);
+               objClasificador.setAction(Action.Insert);
+               dalPsClasificador.save(objClasificador);
+
+               objClasificador = new PsClasificador();
+               objClasificador.setDescripcion("JUNIO");
+               objClasificador.setEstado(1L);
+               objClasificador.setMsclasificadorId(1L);
+               objClasificador.setAction(Action.Insert);
+               dalPsClasificador.save(objClasificador);
+
+               objClasificador = new PsClasificador();
+               objClasificador.setDescripcion("JULIO");
+               objClasificador.setEstado(1L);
+               objClasificador.setMsclasificadorId(1L);
+               objClasificador.setAction(Action.Insert);
+               dalPsClasificador.save(objClasificador);
+
+               objClasificador = new PsClasificador();
+               objClasificador.setDescripcion("AGOSTO");
+               objClasificador.setEstado(1L);
+               objClasificador.setMsclasificadorId(1L);
+               objClasificador.setAction(Action.Insert);
+               dalPsClasificador.save(objClasificador);
+
+               objClasificador = new PsClasificador();
+               objClasificador.setDescripcion("SEPTIEMBRE");
+               objClasificador.setEstado(1L);
+               objClasificador.setMsclasificadorId(1L);
+               objClasificador.setAction(Action.Insert);
+               dalPsClasificador.save(objClasificador);
+
+               objClasificador = new PsClasificador();
+               objClasificador.setDescripcion("OCTUBRE");
+               objClasificador.setEstado(1L);
+               objClasificador.setMsclasificadorId(1L);
+               objClasificador.setAction(Action.Insert);
+               dalPsClasificador.save(objClasificador);
+
+               objClasificador = new PsClasificador();
+               objClasificador.setDescripcion("NOVIEMBRE");
+               objClasificador.setEstado(1L);
+               objClasificador.setMsclasificadorId(1L);
+               objClasificador.setAction(Action.Insert);
+               dalPsClasificador.save(objClasificador);
+
+               objClasificador = new PsClasificador();
+               objClasificador.setDescripcion("DICIEMBRE");
+               objClasificador.setEstado(1L);
+               objClasificador.setMsclasificadorId(1L);
+               objClasificador.setAction(Action.Insert);
+               dalPsClasificador.save(objClasificador);
+
+               msClasificador = new MsClasificador();
+               msClasificador.setAction(Action.Insert);
+               msClasificador.setDescripcion("Gestion");
+               dalMsClasificador.save(msClasificador);
+               msClasificador = new MsClasificador();
+               msClasificador.setAction(Action.Insert);
+               msClasificador.setDescripcion("Gasto");
+               dalMsClasificador.save(msClasificador);
+           } else {
+
+
+           }
        }catch (Exception e){
            Log.e("Splash",e.toString());
        }

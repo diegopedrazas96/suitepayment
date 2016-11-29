@@ -7,15 +7,25 @@
               android:orientation="vertical" >
 
     <TextView
-            android:id="@+id/textView1"
+            android:id="@+id/tvImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:drawableTop="@mipmap/cart"
             android:gravity="center_horizontal|bottom"
             android:text="@string/app_name"
-            android:textAppearance="@android:style/TextAppearance.Small"
-            android:textColor="#131314"
+            android:textSize="24dp"
+            android:textAppearance="@android:style/TextAppearance.Large"
+            android:textColor="@color/blue50"
             android:textStyle="bold" />
+    <TextView
+        android:id="@+id/tvText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center_horizontal|bottom"
+        android:text="@string/app_name"
+        android:textAppearance="@android:style/TextAppearance.Large"
+        android:textColor="#131314"
+        android:textStyle="bold" />
 
 </LinearLayout>

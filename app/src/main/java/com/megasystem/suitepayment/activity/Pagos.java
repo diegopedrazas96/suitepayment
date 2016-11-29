@@ -12,6 +12,8 @@ import com.megasystem.suitepayment.data.sale.DPsClasificador;
 import com.megasystem.suitepayment.entity.sale.EnumClasificadores;
 import com.megasystem.suitepayment.entity.sale.PsClasificador;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class Pagos extends AppCompatActivity {
@@ -27,13 +29,15 @@ public class Pagos extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pagos);
         etFecha = (EditText) findViewById(R.id.etDate);
+        etFecha.setText(new SimpleDateFormat("dd/MM/yyyy HH:mm").format(new Date()));
+        etFecha.setEnabled(false);
         etEmpleado = (EditText) findViewById(R.id.etEmpleado);
         etMonto = (EditText) findViewById(R.id.etMonto);
         spPeriodType = (Spinner) findViewById(R.id.spPeriodType);
         spMonthType = (Spinner) findViewById(R.id.spMonthType);
         btnSave = (Button) findViewById(R.id.btnSave);
         btnCancel = (Button) findViewById(R.id.btnCancel);
-        DPsClasificador classifiers = new DPsClasificador(Pagos.this, DPsClasificador.class);
+        DPsClasificador classifiers = new DPsClasificador(Pagos.this, PsClasificador.class);
         List<PsClasificador> periodo = classifiers.list(EnumClasificadores.Periodo.getValor());
         List<PsClasificador> gestion = classifiers.list(EnumClasificadores.Gestion.getValor());
         String[] periodoArray = new String[periodo.size()];
@@ -41,12 +45,12 @@ public class Pagos extends AppCompatActivity {
         int i = 0;
         for (PsClasificador obj : periodo) {
             periodoArray[i] = obj.getDescripcion();
-            //i++;
+            i++;
         }
          i = 0;
         for (PsClasificador obj : gestion) {
             gestionArray[i] = obj.getDescripcion();
-            //i++;
+            i++;
         }
         ArrayAdapter<String> sPeriodAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, periodoArray);
         sPeriodAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

@@ -1,6 +1,7 @@
 package com.megasystem.suitepayment.entity.sale;
 
 import com.megasystem.suitepayment.entity.Entity;
+import com.megasystem.suitepayment.entity.annotation.Ignore;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -14,6 +15,16 @@ public class Gasto extends Entity implements Serializable{
     private Date fecha;
     private String descripcion;
     private Double monto;
+    @Ignore
+    private PsClasificador TipoGasto;
+
+    public PsClasificador getTipoGasto() {
+        return TipoGasto;
+    }
+
+    public void setTipoGasto(PsClasificador tipoGasto) {
+        TipoGasto = tipoGasto;
+    }
 
     public Long getTipoIdc() {
         return tipoIdc;

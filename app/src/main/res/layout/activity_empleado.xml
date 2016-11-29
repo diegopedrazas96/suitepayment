@@ -103,8 +103,8 @@
                     android:layout_weight="0.7"
                     android:ems="10"
                     android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
-                    android:hint="@string/address_reference"
-                    android:inputType="numberDecimal" android:text="@string/salary_example"/>
+
+                    android:inputType="number" android:text="@string/salary_example"/>
 
         </TableRow>
         <TableRow

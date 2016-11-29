@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -17,7 +18,6 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.TextView;
 import com.megasystem.suitepayment.R;
-import com.megasystem.suitepayment.entity.sale.Pago;
 
 public class Main extends AppCompatActivity {
 
@@ -46,7 +46,7 @@ public class Main extends AppCompatActivity {
                 switch (arg2) {
 
                     case 0:
-                        intent = new Intent(Main.this, Empleado.class);
+                        intent = new Intent(Main.this, ListEmpleado.class);
                         startActivity(intent);
                         break;
                     case 1:
@@ -62,6 +62,11 @@ public class Main extends AppCompatActivity {
                         startActivity(intent);
                         break;
                     case 4:
+                        //REPORTE
+                        intent = new Intent(Main.this, ListReport.class);
+                        startActivity(intent);
+                        break;
+                    case 5:
                         intent = new Intent(Main.this, Configuration.class);
                         startActivity(intent);
                         break;
@@ -106,24 +111,28 @@ public class Main extends AppCompatActivity {
                 LayoutInflater vi = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 v = vi.inflate(R.layout.main_item, null);
             }
+            Typeface font = Typeface.createFromAsset( getAssets(), "fontawesome-webfont.ttf" );
+            TextView image = (TextView) v.findViewById(R.id.tvImage);
+            TextView text = (TextView) v.findViewById(R.id.tvText);
+            image.setTypeface(font);
+            text.setTypeface(font);
+            image.setText(mThumbIds[position]);
+            text.setText(mThumbLabels[position]);
 
-            TextView name = (TextView) v.findViewById(R.id.textView1);
+//            Drawable img = getResources().getDrawable(mThumbIds[position]);
+//            Bitmap bitmap = ((BitmapDrawable) img).getBitmap();
+//
+//            Drawable drawable = new BitmapDrawable(getResources(),
+//                    Bitmap.createScaledBitmap(bitmap, 64, 64, true));
+            //name.setCompoundDrawablesWithIntrinsicBounds(null, drawable, null,null);
 
-            Drawable img = getResources().getDrawable(mThumbIds[position]);
-            Bitmap bitmap = ((BitmapDrawable) img).getBitmap();
-
-            Drawable drawable = new BitmapDrawable(getResources(),
-                    Bitmap.createScaledBitmap(bitmap, 64, 64, true));
-            name.setCompoundDrawablesWithIntrinsicBounds(null, drawable, null,
-                    null);
-            name.setText(mThumbLabels[position]);
 
             return v;
         }
 
-        private Integer[] mThumbIds = { R.mipmap.clients, R.mipmap.invoice,
-                R.mipmap.cart ,R.mipmap.payments, R.mipmap.options};
+        private Integer[] mThumbIds = { R.string.icon_empleado2, R.string.icon_pagos,
+                R.string.icon_gastos,R.string.icon_clasificadores,R.string.icon_reporte,R.string.icon_configuracion};
         private Integer[] mThumbLabels = { R.string.empleados, R.string.pagos,
-                R.string.gastos,R.string.clasifier,R.string.configuracion };
+                R.string.gastos,R.string.clasifier,R.string.menu_report,R.string.configuracion };
     }
 }

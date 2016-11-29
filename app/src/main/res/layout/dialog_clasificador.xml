@@ -9,56 +9,34 @@
             android:layout_alignParentTop="true"
             android:orientation="vertical">
 
-
-
         <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:focusable="false"
                 android:focusableInTouchMode="false"
                 android:weightSum="1">
+
             <TextView
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.3"
-                    android:text="@string/date"
+                    android:text="@string/group"
                     android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"/>
 
             <EditText
-                    android:id="@+id/etDate"
+                    android:id="@+id/etGroup"
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.7"
                     android:ems="10"
                     android:editable="false"
-                    android:inputType="textCapCharacters"
-                    android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"/>
-
-        </TableRow>
-        <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
-                android:weightSum="1">
-
-            <TextView
-                    android:layout_width="0dip"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.3"
-                    android:text="@string/spending_type"
-                    android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"/>
-
-            <Spinner
-                    android:id="@+id/spSpendingType"
-                    android:layout_width="0dip"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.7"
-                    android:ems="10"
+                    android:enabled="false"
                     android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
-                    android:inputType="textCapCharacters" android:spinnerMode="dropdown"/>
+                    android:hint="@string/name_sample"
+                    android:inputType="textCapCharacters"/>
 
         </TableRow>
+
         <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -78,9 +56,9 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.7"
                     android:ems="10"
-                    android:hint="@string/description_hint"
                     android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
-                    android:inputType="textCapCharacters" />
+                    android:hint="@string/address_hint"
+                    android:inputType="textCapCharacters"/>
 
         </TableRow>
         <TableRow
@@ -89,22 +67,14 @@
                 android:focusable="false"
                 android:focusableInTouchMode="false"
                 android:weightSum="1">
-            <TextView
-                    android:layout_width="0dip"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.3"
-                    android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
-                    android:text="@string/amount_text"/>
 
-            <EditText
-                    android:id="@+id/etMonto"
-                    android:layout_width="0dip"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.7"
-                    android:ems="10"
-                    android:hint="@string/amount_hint"
-                    android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
-                    android:inputType="textCapCharacters"/>
+        </TableRow>
+        <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:weightSum="1">
 
         </TableRow>
         <TableRow
@@ -137,9 +107,8 @@
                 android:layout_height="wrap_content"
                 android:background="@color/status_cancel"
                 android:layout_weight="0.5"
-
-                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
-                android:text="@string/cancel" />
+                android:text="@string/cancel"
+                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"/>
 
         <com.gc.materialdesign.views.ButtonRectangle
                 android:id="@+id/btnSave"
@@ -147,8 +116,8 @@
                 android:layout_height="wrap_content"
                 android:background="@color/status_inprocess"
                 android:layout_weight="0.5"
-                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
-                android:text="@string/save" />
+                android:text="@string/save"
+                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"/>
     </TableRow>
 
 

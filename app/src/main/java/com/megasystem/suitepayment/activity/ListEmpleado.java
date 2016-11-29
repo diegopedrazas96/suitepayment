@@ -1,20 +1,20 @@
 package com.megasystem.suitepayment.activity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.*;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ListView;
+import android.widget.TextView;
 import com.gc.materialdesign.views.ButtonFloat;
 import com.megasystem.suitepayment.R;
 import com.megasystem.suitepayment.data.sale.DEmpleado;
-import com.megasystem.suitepayment.entity.sale.*;
 import com.megasystem.suitepayment.entity.sale.Empleado;
 
 import java.util.List;
@@ -23,6 +23,8 @@ public class ListEmpleado extends AppCompatActivity {
     private ListView lvEmpleados;
     private List<Empleado> lstEmpleados;
     private ButtonFloat btnAdd;
+    private int actionForm = 0;
+    private final int orderRequest = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +38,8 @@ public class ListEmpleado extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ListEmpleado.this, com.megasystem.suitepayment.activity.Empleado.class);
+                actionForm = 1;
+                intent.putExtra("actionForm", actionForm);
                 startActivity(intent);
             }
         });
@@ -64,10 +68,12 @@ public class ListEmpleado extends AppCompatActivity {
                 public void onClick(View view) {
 
                     Empleado emp = (Empleado) btn.getTag(R.id.details);
-
                     Intent intent = new Intent(ListEmpleado.this, com.megasystem.suitepayment.activity.Empleado.class);
-                    //intent.putExtra(R.id.details,emp);
-                    startActivity(intent);
+                    actionForm = 2;
+                    intent.putExtra("empleado", emp);
+                    intent.putExtra("actionForm", actionForm);
+                    startActivityForResult(intent, orderRequest);
+                   // startActivity(intent);
 
                 }
             });
@@ -75,5 +81,14 @@ public class ListEmpleado extends AppCompatActivity {
             return view;
         }
 
+    }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK) {
+            DEmpleado dalEmpleado = new DEmpleado(ListEmpleado.this, com.megasystem.suitepayment.entity.sale.Empleado.class);
+            lstEmpleados = dalEmpleado.list();
+            lvEmpleados.setAdapter(new Adapter(ListEmpleado.this,lstEmpleados));
+        }
     }
 }

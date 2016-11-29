@@ -13,6 +13,7 @@
     <string name="registry_data">Registro</string>
     <string name="email">Correo electrónico</string>
     <string name="salary">Salario:</string>
+    <string name="group">Grupo</string>
     <string name="employee_info">Datos Empleado</string>
     <string name="clasifier">Clasificadores</string>
     <string name="spending_type">Tipo de Gasto</string>
@@ -23,8 +24,17 @@
     <string name="worker">Trabajador</string>
     <string name="worker_hint">Pepe Martinez</string>
     <string name="address_hint">Av. 21 de Mayo</string>
-    <string name="amount_hint">200 Bs.</string>
-    <string name="salary_example">2000 Bs.</string>
+    <string name="amount_hint">200</string>
+    <string name="icon_empleado">&#xf2b9;</string>
+    <string name="icon_pagos">&#xf0d6;</string>
+    <string name="icon_empleado2">&#xf2bd;</string>
+    <string name="icon_gastos">&#xf09d;</string>
+    <string name="icon_clasificadores">&#xf00b;</string>
+    <string name="icon_configuracion">&#xf1c0;</string>
+    <string name="icon_reporte">&#xf080;</string>
+    <string name="pagar">Pagar</string>
+    <string name="pagado">Pagado</string>
+    <string name="salary_example">2000</string>
     <string name="password">Código de Acceso</string>
     <string name="name">Nombre Completo</string>
     <string name="edit">Editar</string>
@@ -37,7 +47,7 @@
     <string name="empleados">Empleados</string>
     <string name="pagos">Pagos</string>
     <string name="gastos">Gastos</string>
-    <string name="configuracion">Configuracion</string>
+    <string name="configuracion">Configuración</string>
     <string name="sale_product">Vender</string>
     <string name="date">Fecha:</string>
     <string name="loading">Cargando</string>
@@ -107,6 +117,8 @@
     <string name="place">Lugar:</string>
     <string name="void_order">Anular</string>
     <string name="no">No</string>
+    <string name="saldo">Saldo</string>
+    <string name="saldo_mes">Saldo - Mes</string>
     <string name="printer_mac">MAC Address de Impresora</string>
     <string name="question_exit">Esta seguro de salir de la Aplicación?</string>
     <string name="title_activity_splash">Splash</string>
