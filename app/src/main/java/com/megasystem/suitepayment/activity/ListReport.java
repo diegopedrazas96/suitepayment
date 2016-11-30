@@ -1,18 +1,15 @@
 package com.megasystem.suitepayment.activity;
 
-import android.app.IntentService;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import com.gc.materialdesign.views.ButtonFloat;
 import com.megasystem.suitepayment.R;
 
@@ -32,7 +29,7 @@ public class ListReport extends AppCompatActivity {
         btnadd.setVisibility(View.GONE);
         lstOptions = new ArrayList<String>();
         lstOptions.add("Generar Planilla");
-        lstOptions.add("Reporte Gastos");
+        lstOptions.add("Reporte de Gastos");
         lstOptions.add("Reporte de Pagos");
         lvItems.setAdapter(new Adapter(ListReport.this, lstOptions));
     }
@@ -59,7 +56,15 @@ public class ListReport extends AppCompatActivity {
                 public void onClick(View v) {
                     Intent intent;
                     String emp = (String) nombre.getTag(R.id.details);
+                    if (emp.equals("Reporte de Gastos")) {
+                        intent = new Intent(ListReport.this,ReporteGastos.class);
+                        startActivity(intent);
+                    }
                     if (emp.equals("Generar Planilla")) {
+                        intent = new Intent(ListReport.this,ListGenerateSalary.class);
+                        startActivity(intent);
+                    }
+                    if (emp.equals("Reporte de Pagos")) {
                         intent = new Intent(ListReport.this,ReporteGastos.class);
                         startActivity(intent);
                     }

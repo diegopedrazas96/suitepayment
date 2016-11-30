@@ -40,6 +40,7 @@
     <string name="edit">Editar</string>
     <string name="ci">Carnet de identidad</string>
     <string name="search">Buscar</string>
+    <string name="generate">Generar</string>
     <string name="menu_productlocal">Venta</string>
     <string name="menu_agregarpedidos">Agregar Pedidos</string>
     <string name="sending_order">Enviando Pedido.</string>
@@ -78,6 +79,7 @@
     <string name="customer_info">Datos Cliente</string>
     <string name="activity_maps_title">Mapas</string>
     <string name="message_no_conexion">Sin conexión a Internet.</string>
+    <string name="message_save">Guardado Correctamente.!</string>
     <string name="quantity">Cant.:</string>
     <string name="unitprice">P/U:</string>
     <string name="save">Guardar</string>

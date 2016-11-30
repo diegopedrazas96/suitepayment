@@ -1,0 +1,94 @@
+package com.megasystem.suitepayment.activity;
+
+import android.content.Context;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.*;
+import com.gc.materialdesign.views.ButtonRectangle;
+import com.megasystem.suitepayment.R;
+import com.megasystem.suitepayment.data.sale.DEmpleado;
+import com.megasystem.suitepayment.data.sale.DPsClasificador;
+import com.megasystem.suitepayment.entity.sale.*;
+import com.megasystem.suitepayment.entity.sale.Empleado;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class ListGenerateSalary extends AppCompatActivity {
+    private List<com.megasystem.suitepayment.entity.sale.Empleado> lstEmpleados;
+    private List<com.megasystem.suitepayment.entity.sale.Empleado> lstSelectedEmpleados;
+    private Spinner spPeriodType;
+    private Spinner spMonthType;
+    private ButtonRectangle btnGenerate;
+    private ListView lvEmpleados;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_list_generate_salary);
+        spPeriodType = (Spinner) findViewById(R.id.spPeriodType);
+        spMonthType = (Spinner) findViewById(R.id.spMonthType);
+        lstSelectedEmpleados = new ArrayList<Empleado>();
+        btnGenerate = (ButtonRectangle) findViewById(R.id.btnGenerate);
+        DEmpleado dalEmpleado = new DEmpleado(ListGenerateSalary.this, com.megasystem.suitepayment.entity.sale.Empleado.class);
+        lstEmpleados = dalEmpleado.list();
+        lvEmpleados = (ListView) findViewById(R.id.listView);
+        DPsClasificador classifiers = new DPsClasificador(ListGenerateSalary.this, PsClasificador.class);
+        List<PsClasificador> periodo = classifiers.list(EnumClasificadores.Periodo.getValor());
+        List<PsClasificador> gestion = classifiers.list(EnumClasificadores.Gestion.getValor());
+        String[] periodoArray = new String[periodo.size()];
+        String[] gestionArray = new String[gestion.size()];
+        int i = 0;
+        for (PsClasificador obj : periodo) {
+            periodoArray[i] = obj.getDescripcion();
+            i++;
+        }
+        i = 0;
+        for (PsClasificador obj : gestion) {
+            gestionArray[i] = obj.getDescripcion();
+            i++;
+        }
+        ArrayAdapter<String> sPeriodAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, periodoArray);
+        sPeriodAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spMonthType.setAdapter(sPeriodAdapter);
+        ArrayAdapter<String> sGestionAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, gestionArray);
+        sGestionAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spPeriodType.setAdapter(sGestionAdapter);
+        lvEmpleados.setAdapter(new Adapter(ListGenerateSalary.this,lstEmpleados));
+        btnGenerate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+    }
+    public class Adapter extends ArrayAdapter<com.megasystem.suitepayment.entity.sale.Empleado> {
+
+        private final Context context;
+
+        public Adapter(Context context, List<com.megasystem.suitepayment.entity.sale.Empleado> items) {
+            super(context, R.layout.item_empleado_checkbox, items);
+            this.context = context;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View view = inflater.inflate(R.layout.item_empleado_checkbox, null);
+            com.megasystem.suitepayment.entity.sale.Empleado obj = lstEmpleados.get(position);
+            TextView nombre = (TextView) view.findViewById(R.id.tvEmployeeName);
+            final CheckBox btn = (CheckBox) view.findViewById(R.id.details);
+            nombre.setText(obj.getNombre());
+            if(btn.isChecked()==true){
+                lstSelectedEmpleados.add(obj);
+            }
+
+            return view;
+        }
+
+    }
+}

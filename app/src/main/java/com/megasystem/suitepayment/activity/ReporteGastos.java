@@ -1,15 +1,13 @@
 package com.megasystem.suitepayment.activity;
 
 import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-
 import com.megasystem.suitepayment.R;
 import com.megasystem.suitepayment.data.sale.DGasto;
 import com.megasystem.suitepayment.data.sale.DPsClasificador;
@@ -18,6 +16,7 @@ import com.megasystem.suitepayment.entity.sale.Gasto;
 import com.megasystem.suitepayment.entity.sale.PsClasificador;
 import com.megasystem.suitepayment.util.Util;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class ReporteGastos extends AppCompatActivity {
@@ -57,7 +56,9 @@ public class ReporteGastos extends AppCompatActivity {
             row.setBackgroundColor((sw = !sw) ? Color.WHITE : Color.LTGRAY);
 
             txtCode = (TextView) row.findViewById(R.id.tvFecha);
-           // txtCode.setText((CharSequence) obj.getFecha());
+            String dateFormated = new SimpleDateFormat("dd/MM/yyyy HH:mm").format(obj.getFecha()).toString();
+           // txtDate.setText(dateFormated);
+            txtCode.setText(dateFormated);
 
             txtName = (TextView) row.findViewById(R.id.tvDescripcion);
             txtName.setText(obj.getDescripcion());

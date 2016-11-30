@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 import com.gc.materialdesign.views.Button;
 import com.megasystem.suitepayment.R;
 import com.megasystem.suitepayment.data.sale.DGasto;
@@ -55,12 +56,14 @@ public class Gastos extends AppCompatActivity {
             public void onClick(View view) {
                 DGasto dalGasto = new DGasto(Gastos.this, com.megasystem.suitepayment.entity.sale.Gasto.class);
                 com.megasystem.suitepayment.entity.sale.Gasto gasto = new com.megasystem.suitepayment.entity.sale.Gasto();
-                gasto.setFecha(new Date(etDate.getText().toString()));
+                gasto.setFecha(new Date());
                 gasto.setDescripcion(etDescripcion.getText().toString());
                 gasto.setMonto(Double.valueOf(etMonto.getText().toString()));
                 gasto.setTipoIdc(lstPsGastos.get(spSpendingType.getSelectedItemPosition()).getId());
                 gasto.setAction(Action.Insert);
                 dalGasto.save(gasto);
+                limpiar();
+                Toast.makeText(Gastos.this,getString(R.string.message_save),Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -73,5 +76,10 @@ public class Gastos extends AppCompatActivity {
             }
         });
 
+    }
+    private void limpiar(){
+        etDate.setText(new SimpleDateFormat("dd/MM/yyyy HH:mm").format(new Date()));
+        etDescripcion.setText("");
+        etMonto.setText("");
     }
 }
