@@ -1,8 +1,8 @@
 package com.megasystem.suitepayment.entity.sale;
 
 import com.megasystem.suitepayment.entity.Entity;
+import com.megasystem.suitepayment.entity.annotation.Ignore;
 
-import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -12,11 +12,49 @@ public class HistorialPagos extends Entity {
 
         private Date fecha;
         private Long empleadoId;
+        private Long gestionIdc;
         private Long periodoIdc;
-        private Long mesIdc;
         private Double pagar;
         private Double pagado;
         private Double saldo;
+        @Ignore
+        private Empleado empleado;
+        @Ignore
+        private PsClasificador gestion;
+        @Ignore
+        private PsClasificador periodo;
+
+    public Long getGestionIdc() {
+        return gestionIdc;
+    }
+
+    public void setGestionIdc(Long gestionIdc) {
+        this.gestionIdc = gestionIdc;
+    }
+
+    public Empleado getEmpleado() {
+        return empleado;
+    }
+
+    public void setEmpleado(Empleado empleado) {
+        this.empleado = empleado;
+    }
+
+    public PsClasificador getGestion() {
+        return gestion;
+    }
+
+    public void setGestion(PsClasificador gestion) {
+        this.gestion = gestion;
+    }
+
+    public PsClasificador getPeriodo() {
+        return periodo;
+    }
+
+    public void setPeriodo(PsClasificador periodo) {
+        this.periodo = periodo;
+    }
 
     public Long getPeriodoIdc() {
         return periodoIdc;
@@ -26,13 +64,7 @@ public class HistorialPagos extends Entity {
         this.periodoIdc = periodoIdc;
     }
 
-    public Long getMesIdc() {
-        return mesIdc;
-    }
 
-    public void setMesIdc(Long mesIdc) {
-        this.mesIdc = mesIdc;
-    }
 
     public Date getFecha() {
         return fecha;

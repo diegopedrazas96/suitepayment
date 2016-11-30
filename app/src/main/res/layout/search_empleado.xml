@@ -1,0 +1,64 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:minWidth="490dp"
+              android:orientation="vertical" >
+
+    <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:padding="4dip"
+            android:weightSum="1.0" >
+
+        <EditText
+                android:id="@+id/edtSearchP"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.6"
+                android:ems="8"
+                android:hint="@string/search"
+                android:inputType="textCapWords" />
+
+        <TextView
+                android:id="@+id/textNumber"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.4"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="@string/add"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+    </TableRow>
+
+    <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#777"
+            android:padding="5dip"
+            android:weightSum="1" >
+
+        <TextView
+                android:layout_width="0dp"
+                android:layout_weight="0.50"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="@string/name"
+                android:textColor="#FFF" />
+        <TextView
+                android:layout_width="0dp"
+                android:layout_weight="0.25"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="@string/saldo"
+                android:textColor="#FFF" />
+    </TableRow>
+
+    <ListView
+            android:id="@+id/tableProducts"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:choiceMode="singleChoice"
+            android:divider="@android:color/background_light"
+            android:dividerHeight="1dp"
+            android:listSelector="@drawable/list_selector" />
+
+</LinearLayout>

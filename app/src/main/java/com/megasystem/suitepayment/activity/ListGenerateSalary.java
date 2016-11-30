@@ -1,6 +1,7 @@
 package com.megasystem.suitepayment.activity;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -10,11 +11,14 @@ import android.widget.*;
 import com.gc.materialdesign.views.ButtonRectangle;
 import com.megasystem.suitepayment.R;
 import com.megasystem.suitepayment.data.sale.DEmpleado;
+import com.megasystem.suitepayment.data.sale.DHistorialPagos;
 import com.megasystem.suitepayment.data.sale.DPsClasificador;
+import com.megasystem.suitepayment.entity.Action;
 import com.megasystem.suitepayment.entity.sale.*;
 import com.megasystem.suitepayment.entity.sale.Empleado;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class ListGenerateSalary extends AppCompatActivity {
@@ -24,6 +28,9 @@ public class ListGenerateSalary extends AppCompatActivity {
     private Spinner spMonthType;
     private ButtonRectangle btnGenerate;
     private ListView lvEmpleados;
+    private   List<PsClasificador> periodo;
+    private List<PsClasificador> gestion;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +44,8 @@ public class ListGenerateSalary extends AppCompatActivity {
         lstEmpleados = dalEmpleado.list();
         lvEmpleados = (ListView) findViewById(R.id.listView);
         DPsClasificador classifiers = new DPsClasificador(ListGenerateSalary.this, PsClasificador.class);
-        List<PsClasificador> periodo = classifiers.list(EnumClasificadores.Periodo.getValor());
-        List<PsClasificador> gestion = classifiers.list(EnumClasificadores.Gestion.getValor());
+         periodo = classifiers.list(EnumClasificadores.Periodo.getValor());
+         gestion = classifiers.list(EnumClasificadores.Gestion.getValor());
         String[] periodoArray = new String[periodo.size()];
         String[] gestionArray = new String[gestion.size()];
         int i = 0;
@@ -61,7 +68,25 @@ public class ListGenerateSalary extends AppCompatActivity {
         btnGenerate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                DHistorialPagos dalHistorialPagos = new DHistorialPagos(ListGenerateSalary.this,HistorialPagos.class);
+                for (Empleado objEmpleado : lstSelectedEmpleados){
+                    HistorialPagos objHistorialPago ;
+                    objHistorialPago = dalHistorialPagos.getByEmpleadoAndPeriod(objEmpleado.getId(),periodo.get(spMonthType.getSelectedItemPosition()).getId(),gestion.get(spPeriodType.getSelectedItemPosition()).getId());
+                    if(objHistorialPago == null){
+                        objHistorialPago = new HistorialPagos();
+                        objHistorialPago.setAction(Action.Insert);
+                        objHistorialPago.setFecha(new Date());
+                        objHistorialPago.setEmpleadoId(objEmpleado.getId());
+                        objHistorialPago.setPeriodoIdc(periodo.get(spMonthType.getSelectedItemPosition()).getId());
+                        objHistorialPago.setGestionIdc(gestion.get(spPeriodType.getSelectedItemPosition()).getId());
+                        objHistorialPago.setPagar(objEmpleado.getSalario());
+                        objHistorialPago.setPagado(0D);
+                        objHistorialPago.setSaldo(objEmpleado.getSalario());
+                        dalHistorialPagos.save(objHistorialPago);
+                    }else{
+                        Toast.makeText(ListGenerateSalary.this,"Ya existe registro de planilla para el empleado - " + objEmpleado.getNombre() + " para este mes y gestion.",Toast.LENGTH_LONG).show();
+                    }
+                }
             }
         });
 
@@ -83,9 +108,21 @@ public class ListGenerateSalary extends AppCompatActivity {
             TextView nombre = (TextView) view.findViewById(R.id.tvEmployeeName);
             final CheckBox btn = (CheckBox) view.findViewById(R.id.details);
             nombre.setText(obj.getNombre());
-            if(btn.isChecked()==true){
-                lstSelectedEmpleados.add(obj);
-            }
+            view.setTag(R.id.details, obj);
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Empleado emp = (Empleado) view.getTag(R.id.details);
+                    if(btn.isChecked()== true){
+                        lstSelectedEmpleados.add(emp);
+                        view.setBackgroundColor(Color.BLUE);
+                    }else{
+                        lstSelectedEmpleados.remove(emp);
+                        view.setBackgroundColor(Color.WHITE);
+
+                    }
+                }
+            });
 
             return view;
         }
