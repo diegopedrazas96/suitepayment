@@ -20,6 +20,9 @@ public class DGasto extends Wrapper {
     public List<Gasto> list() {
         return super.list("select * from gasto");
     }
+    public List<Gasto> listByMonthPeriod(String fecha1,String fecha2) {
+        return super.list("select * from gasto where fecha between datetime('"+fecha1+"') and  datetime('"+fecha2+"')");
+    }
 
     @SuppressWarnings("unchecked")
     public List<Gasto> list(String order) {

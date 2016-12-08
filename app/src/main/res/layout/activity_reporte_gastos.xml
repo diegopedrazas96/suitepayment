@@ -14,15 +14,7 @@
         android:layout_alignParentTop="true"
         android:orientation="vertical" >
 
-        <TextView
-            android:id="@+id/tvClientName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="5dp"
-            android:text="@string/name"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
+
 
         <TableRow
             android:id="@+id/tableRow2"
@@ -34,32 +26,39 @@
             android:weightSum="1"
             android:gravity="center_horizontal|center_vertical">
 
-            <EditText
-                android:id="@+id/edtCode"
-                android:layout_width="0px"
-                android:layout_weight="0.27"
-                android:ems="8"
-                android:hint="@string/code"
-                android:inputType="number" />
+            <TextView
+                    android:layout_width="0dip"
+                    android:layout_weight="0.15"
+                    android:ems="8"
+                    android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+                    android:text="@string/desde"
+                    />
+            <Button
+                    android:id="@+id/desdeDate"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.25"
+                    android:text="@string/date_title"
+                    android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+                    />
 
-            <EditText
-                android:id="@+id/edtDiscount"
-                android:layout_width="0px"
-                android:layout_weight="0.20"
-                android:ems="8"
-                android:hint="@string/accept"
-                android:inputType="numberDecimal"
-                android:visibility="invisible"
-                android:maxLines="1" />
 
-            <EditText
-                android:id="@+id/edtQuantity"
-                android:layout_width="0px"
-                android:layout_weight="0.30"
+            <TextView
+                android:layout_width="0dip"
+                android:layout_weight="0.12"
                 android:ems="8"
-                android:hint="@string/quantity"
-                android:inputType="numberDecimal"
-                android:maxLines="1" />
+                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+                android:text="@string/hasta"
+                />
+
+            <Button
+                    android:id="@+id/hastaDate"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.25"
+                    android:text="@string/date_title"
+                    android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+                    />
 
             <com.gc.materialdesign.views.ButtonRectangle
                 android:id="@+id/btnSearch"

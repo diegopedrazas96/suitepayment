@@ -669,9 +669,10 @@ public class ListGenerateSalary extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 DHistorialPagos dalHistorialPagos = new DHistorialPagos(ListGenerateSalary.this,HistorialPagos.class);
-                for (Empleado objEmpleado : lstEmpleados){                    HistorialPagos objHistorialPago ;
-                    objHistorialPago = dalHistorialPagos.getByEmpleadoAndPeriod(objEmpleado.getId(),periodo.get(spMonthType.getSelectedItemPosition()).getId(),gestion.get(spPeriodType.getSelectedItemPosition()).getId());
-                    if(objHistorialPago == null){
+                for (Empleado objEmpleado : lstEmpleados){
+                    HistorialPagos objHistorialPago ;
+                    objHistorialPago = dalHistorialPagos.getByEmpleadoAndPeriod(objEmpleado.getId(),gestion.get(spPeriodType.getSelectedItemPosition()).getId(),periodo.get(spMonthType.getSelectedItemPosition()).getId());
+                    if(objHistorialPago.getId() == null){
                         objHistorialPago = new HistorialPagos();
                         objHistorialPago.setAction(Action.Insert);
                         objHistorialPago.setFecha(new Date());

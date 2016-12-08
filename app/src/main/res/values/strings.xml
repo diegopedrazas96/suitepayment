@@ -41,6 +41,8 @@
     <string name="ci">Carnet de identidad</string>
     <string name="search">Buscar</string>
     <string name="generate">Generar</string>
+    <string name="desde">Desde</string>
+    <string name="hasta">Hasta</string>
     <string name="menu_productlocal">Venta</string>
     <string name="menu_agregarpedidos">Agregar Pedidos</string>
     <string name="sending_order">Enviando Pedido.</string>
@@ -51,6 +53,7 @@
     <string name="configuracion">Configuración</string>
     <string name="sale_product">Vender</string>
     <string name="date">Fecha:</string>
+    <string name="date_title">Fecha</string>
     <string name="loading">Cargando</string>
     <string name="synchronizing">Sincronizando</string>
     <string name="details">Detalles</string>
@@ -100,6 +103,7 @@
     <string name="question_confirm_product">Está seguro de agregar este producto al pedido?</string>
     <string name="yes">Si</string>
     <string name="pick_address">Dirección para la entrega</string>
+    <string name="pick_date">Seleccionar Fecha</string>
     <string name="accept">Aceptar</string>
     <string name="customer">Cliente:</string>
     <string name="order_saved">Su pedido ha sido recibido, Muchas gracias!!!</string>
@@ -175,4 +179,6 @@
     <string name="del_customer">Eliminar Cliente</string>
     <string name="edit_customer">Editar Cliente</string>
     <string name="title_activity_configuration">Configuration</string>
+    <string name="message_backup_finish">Backup Creado</string>
+    <string name="message_no_backup">Backup No Creado</string>
 </resources>

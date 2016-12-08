@@ -3,7 +3,6 @@ package com.megasystem.suitepayment.data.sale;
 import android.content.Context;
 import com.megasystem.suitepayment.data.Wrapper;
 import com.megasystem.suitepayment.entity.sale.Empleado;
-import joquery.core.QueryException;
 
 import java.util.List;
 
@@ -36,11 +35,12 @@ public class DEmpleado extends Wrapper {
         return (Empleado) this.get("select * from empleado where id= " + idCliente);
     }
     public List<Empleado> listBy( String filter,String [] relation) {
-        List list =null;
-        list = super.list("SELECT * FROM empleado WHERE  nombre LIKE '%"+filter+"%')");
+        //List list =null;
+        //list = super.list("SELECT * FROM empleado WHERE  nombre LIKE '%"+filter+"%')");
 
         //  loadRelations(list,relation);
-        return list;
+        return super.list("SELECT * FROM empleado WHERE  nombre LIKE '%"+filter+"%'");
+        //return list;
     }
  /*   protected void loadRelations(List<Empleado> lstObj, String[] Relaciones) throws QueryException {
         if(Relaciones.length==0 ||lstObj==null|| lstObj.isEmpty()){

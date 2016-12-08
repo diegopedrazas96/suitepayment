@@ -20,6 +20,9 @@ public class DHistorialPagos extends Wrapper {
     public List<HistorialPagos> list() {
         return super.list("select * from historialpagos");
     }
+    public List<HistorialPagos> listByGestionPeriod(Long gestionIdc,Long periodoIdc) {
+        return super.list("select * from historialpagos where  gestionIdc = "+ gestionIdc + " and periodoIdc = "+ periodoIdc);
+    }
 
     @SuppressWarnings("unchecked")
     public List<HistorialPagos> list(String order) {
@@ -33,7 +36,7 @@ public class DHistorialPagos extends Wrapper {
     public HistorialPagos getById(int idCliente) {
         return (HistorialPagos) this.get("select * from historialpagos where empleadoId= " + idCliente);
     }
-    public HistorialPagos getByEmpleadoAndPeriod(Long idCliente,Long periodoIdc,Long mesIdc ) {
-        return (HistorialPagos) this.get("select * from historialpagos where empleadoId= " + idCliente + " and periodoIdc = "+ periodoIdc + " and mesIdc = "+ mesIdc);
+    public HistorialPagos getByEmpleadoAndPeriod(Long idCliente,Long gestionIdc,Long periodoIdc ) {
+        return (HistorialPagos) this.get("select * from historialpagos where empleadoId= " + idCliente + " and gestionIdc = "+ gestionIdc + " and periodoIdc = "+ periodoIdc);
     }
 }

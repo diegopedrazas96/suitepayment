@@ -15,10 +15,6 @@ import com.megasystem.suitepayment.entity.annotation.Ignore;
 import com.megasystem.suitepayment.entity.annotation.Key;
 import com.megasystem.suitepayment.entity.annotation.Nullable;
 import com.megasystem.suitepayment.entity.sale.*;
-import joquery.CQ;
-import joquery.Grouping;
-import joquery.ResultTransformer;
-import joquery.core.QueryException;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
@@ -39,7 +35,7 @@ public abstract class Wrapper<T> extends SQLiteOpenHelper {
     protected Context context;
 
     public Wrapper(Context context, Class<T> type) {
-        super(context, "database4.db", null, 1);
+        super(context, Application.DataBaseName + ".db", null, 1);
         this.type = type;
     }
 
@@ -318,7 +314,7 @@ public abstract class Wrapper<T> extends SQLiteOpenHelper {
 
     }
 
-    public <T extends Entity> String extract(List<T> list, String metodo) throws QueryException {
+    /*public <T extends Entity> String extract(List<T> list, String metodo) throws QueryException {
         List<Grouping<Object, T>> grouped = (List<Grouping<Object, T>>) CQ
                 .<T, T> query(list).group().groupBy(metodo).list();
         String key = CQ
@@ -333,7 +329,7 @@ public abstract class Wrapper<T> extends SQLiteOpenHelper {
                         }).list().toString().replaceAll("\\[|\\]", "");
         return "(" + ((key.isEmpty()) ? "0" : key) + ")";
 
-    }
+    }*/
     public SQLiteDatabase getConnection() {
         return connection;
     }

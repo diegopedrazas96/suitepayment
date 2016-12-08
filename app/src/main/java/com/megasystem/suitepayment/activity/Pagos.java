@@ -3,8 +3,8 @@ package com.megasystem.suitepayment.activity;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -13,12 +13,15 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
-import com.gc.materialdesign.views.Button;
+
 import com.gc.materialdesign.views.ButtonRectangle;
 import com.megasystem.suitepayment.Application;
 import com.megasystem.suitepayment.R;
 import com.megasystem.suitepayment.data.sale.DEmpleado;
+import com.megasystem.suitepayment.data.sale.DHistorialPagos;
+import com.megasystem.suitepayment.data.sale.DPago;
 import com.megasystem.suitepayment.data.sale.DPsClasificador;
+import com.megasystem.suitepayment.entity.Action;
 import com.megasystem.suitepayment.entity.sale.*;
 import com.megasystem.suitepayment.entity.sale.Empleado;
 import com.megasystem.suitepayment.util.Util;
@@ -31,13 +34,16 @@ public class Pagos extends AppCompatActivity {
     private EditText etFecha;
     private EditText etEmpleado;
     private EditText etMonto;
-    private Spinner spPeriodType;
-    private Spinner spMonthType;
-    private Button btnSave;
-    private ButtonRectangle btnSearch;
-    private  Button btnCancel;
+
+    private ButtonRectangle btnSave;
+    private Button btnSearch;
+    private  ButtonRectangle btnCancel;
     private Dialog dialogEmpleado;
     private Empleado empleado;
+    private Spinner spPeriodType;
+    private Spinner spMonthType;
+    private   List<PsClasificador> periodo;
+    private List<PsClasificador> gestion;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,16 +55,42 @@ public class Pagos extends AppCompatActivity {
         etMonto = (EditText) findViewById(R.id.etMonto);
         spPeriodType = (Spinner) findViewById(R.id.spPeriodType);
         spMonthType = (Spinner) findViewById(R.id.spMonthType);
-        btnSave = (Button) findViewById(R.id.btnSave);
-        btnSearch = (ButtonRectangle) findViewById(R.id.btnSearch);
-        btnCancel = (Button) findViewById(R.id.btnCancel);
+        btnSave = (ButtonRectangle) findViewById(R.id.btnSave);
+        btnSearch = (Button) findViewById(R.id.btnSearch);
+        btnCancel = (ButtonRectangle) findViewById(R.id.btnCancel);
        loadSpinner();
         loadSearchEmpleados();
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                DPago dalPago = new DPago(Pagos.this,Pagos.class);
+                Pago pago = new Pago();
+                pago.setFecha(new Date());
+                pago.setEmpleadoId(empleado.getId());
+                pago.setGestionIdc(gestion.get(spPeriodType.getSelectedItemPosition()).getId());
+                pago.setPeriodoIdc(periodo.get(spMonthType.getSelectedItemPosition()).getId());
+                pago.setMonto(Double.valueOf(etMonto.getText().toString()));
+               // pago.setDescripcion(e);
+                pago.setAction(Action.Insert);
+                DHistorialPagos dalHistorialPagos = new DHistorialPagos(Pagos.this,HistorialPagos.class);
+                HistorialPagos objHistorialPago ;
+                objHistorialPago = dalHistorialPagos.getByEmpleadoAndPeriod(empleado.getId(),gestion.get(spPeriodType.getSelectedItemPosition()).getId(),periodo.get(spMonthType.getSelectedItemPosition()).getId());
+               // List<HistorialPagos> lstHisto = dalHistorialPagos.list();
+                if(objHistorialPago.getId() != null) {
+                    dalPago.save(pago);
+                    objHistorialPago.setPagado(pago.getMonto()+objHistorialPago.getPagado());
+                    objHistorialPago.setSaldo(objHistorialPago.getSaldo()-pago.getMonto());
+                    objHistorialPago.setAction(Action.Update);
+                    dalHistorialPagos.save(objHistorialPago);
+                    Toast.makeText(Pagos.this,"Pago registrado Correctamente para " + empleado.getNombre(),Toast.LENGTH_SHORT).show();
+                    limpiarCampos();
+                }else{
+                    Toast.makeText(Pagos.this,"No se pudo procesar el pago, el empleado no cuenta con un registro de pago para este mes",Toast.LENGTH_LONG).show();
 
-            }
+
+                }
+
+                }
         });
 
         btnCancel.setOnClickListener(new View.OnClickListener() {
@@ -71,9 +103,14 @@ public class Pagos extends AppCompatActivity {
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                dialogEmpleado.show();
             }
         });
+    }
+    private void  limpiarCampos(){
+        etEmpleado.setText("");
+        etMonto.setText("");
+
     }
     private void loadSearchEmpleados() {
         dialogEmpleado = new Dialog(Pagos.this);
@@ -170,6 +207,7 @@ public class Pagos extends AppCompatActivity {
                         empleado = (Empleado) v.getTag(R.id.add);
 
                         searchDialogEmpleado.dismiss();
+                        etEmpleado.setText(empleado.getNombre());
                         return true;
                     }
                     return false;
@@ -199,8 +237,8 @@ public class Pagos extends AppCompatActivity {
 
     public  void loadSpinner(){
         DPsClasificador classifiers = new DPsClasificador(Pagos.this, PsClasificador.class);
-        List<PsClasificador> periodo = classifiers.list(EnumClasificadores.Periodo.getValor());
-        List<PsClasificador> gestion = classifiers.list(EnumClasificadores.Gestion.getValor());
+         periodo = classifiers.list(EnumClasificadores.Periodo.getValor());
+         gestion = classifiers.list(EnumClasificadores.Gestion.getValor());
         String[] periodoArray = new String[periodo.size()];
         String[] gestionArray = new String[gestion.size()];
         int i = 0;

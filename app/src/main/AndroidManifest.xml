@@ -124,7 +124,7 @@
                   android:screenOrientation="landscape"
                   android:windowSoftInputMode="adjustPan"/>
 
-        <activity android:name=".activity.ReportePagos"
+        <activity android:name=".activity.ReporteHistorialPagos"
                   android:label="@string/app_name"
                   android:screenOrientation="landscape"
                   android:windowSoftInputMode="adjustPan"/>
