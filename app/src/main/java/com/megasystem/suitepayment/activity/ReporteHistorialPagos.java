@@ -1,7 +1,10 @@
 package com.megasystem.suitepayment.activity;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -67,7 +70,7 @@ public class ReporteHistorialPagos extends AppCompatActivity {
         spPeriodType.setAdapter(sGestionAdapter);
     }
     public void loadGrid(Long gestionIdc,Long periodoIdc) {
-        TableLayout table = (TableLayout) findViewById(R.id.table);
+        final TableLayout table = (TableLayout) findViewById(R.id.table);
         LayoutInflater inflater = getLayoutInflater();
         double total = 0;
         TableRow row;
@@ -82,7 +85,7 @@ public class ReporteHistorialPagos extends AppCompatActivity {
         lstPagos = dalHistorialPagos.listByGestionPeriod(gestionIdc,periodoIdc);
 
         loadObject();
-        for (HistorialPagos obj : lstPagos) {
+        for (final HistorialPagos obj : lstPagos) {
             if ((obj.getAction().equals(Action.Delete))) {
                 continue;
             }
@@ -125,6 +128,20 @@ public class ReporteHistorialPagos extends AppCompatActivity {
                 @Override
                 public boolean onLongClick(View v) {
                     v.requestFocus();
+                    new AlertDialog.Builder(ReporteHistorialPagos.this).setTitle(getString(R.string.app_name))
+                            .setMessage(getString(R.string.question_view_payment))
+                            .setNegativeButton(android.R.string.no, null)
+                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+
+                                public void onClick(DialogInterface arg0, int arg1) {
+                                    Intent intent = new Intent(ReporteHistorialPagos.this,ReportePagos.class);
+                                    intent.putExtra("gestionIdc",obj.getGestionIdc());
+                                    intent.putExtra("periodoIdc",obj.getPeriodoIdc());
+                                    intent.putExtra("empleado",obj.getEmpleado());
+                                    startActivity(intent);
+
+                                }
+                            }).create().show();
                     return true;
                 }
             });

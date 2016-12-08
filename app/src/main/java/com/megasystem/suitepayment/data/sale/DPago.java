@@ -25,12 +25,15 @@ public class DPago extends Wrapper {
     public List<Pago> list(String order) {
         return super.list("select * from pago order by " + order);
     }
-
+    public List<Pago> list(Long idCliente,Long gestionIdc,Long periodoIdc) {
+        return super.list("select * from pago where empleadoId= " + idCliente + " and gestionIdc = "+ gestionIdc + " and periodoIdc = "+ periodoIdc);
+    }
     public Pago get() {
         return (Pago) this.get("select * from pago");
     }
 
     public Pago getById(String idCliente) {
         return (Pago) this.get("select * from pago where IdCliente= '" + idCliente+ "'");
+
     }
 }

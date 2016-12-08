@@ -41,6 +41,7 @@ public class ListReport extends AppCompatActivity {
         lstOptions.add("Generar Planilla");
         lstOptions.add("Reporte de Gastos");
         lstOptions.add("Historial de Pagos");
+        lstOptions.add("Reporte de Pagos");
         lstOptions.add("Backup Base de Datos");
         lvItems.setAdapter(new Adapter(ListReport.this, lstOptions));
     }
@@ -77,6 +78,10 @@ public class ListReport extends AppCompatActivity {
                     }
                     if (emp.equals("Historial de Pagos")) {
                         intent = new Intent(ListReport.this,ReporteHistorialPagos.class);
+                        startActivity(intent);
+                    }
+                    if (emp.equals("Reporte de Pagos")) {
+                        intent = new Intent(ListReport.this,ReportePagos.class);
                         startActivity(intent);
                     }
                     if(emp.equals("Backup Base de Datos")){

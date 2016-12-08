@@ -1,6 +1,7 @@
 package com.megasystem.suitepayment.entity.sale;
 
 import com.megasystem.suitepayment.entity.Entity;
+import com.megasystem.suitepayment.entity.annotation.Ignore;
 
 import java.util.Date;
 
@@ -14,8 +15,46 @@ public class Pago extends Entity{
     private Long periodoIdc;
     private Long gestionIdc;
     private Double monto;
+    private int estado;
+    @Ignore
+    private Empleado empleado;
+    @Ignore
+    private PsClasificador gestion;
+    @Ignore
+    private PsClasificador periodo;
 
 
+    public Empleado getEmpleado() {
+        return empleado;
+    }
+
+    public int getEstado() {
+        return estado;
+    }
+
+    public void setEstado(int estado) {
+        this.estado = estado;
+    }
+
+    public void setEmpleado(Empleado empleado) {
+        this.empleado = empleado;
+    }
+
+    public PsClasificador getGestion() {
+        return gestion;
+    }
+
+    public void setGestion(PsClasificador gestion) {
+        this.gestion = gestion;
+    }
+
+    public PsClasificador getPeriodo() {
+        return periodo;
+    }
+
+    public void setPeriodo(PsClasificador periodo) {
+        this.periodo = periodo;
+    }
 
     public Long getEmpleadoId() {
         return empleadoId;

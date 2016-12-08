@@ -70,6 +70,7 @@ public class Pagos extends AppCompatActivity {
                 pago.setGestionIdc(gestion.get(spPeriodType.getSelectedItemPosition()).getId());
                 pago.setPeriodoIdc(periodo.get(spMonthType.getSelectedItemPosition()).getId());
                 pago.setMonto(Double.valueOf(etMonto.getText().toString()));
+                pago.setEstado(1);
                // pago.setDescripcion(e);
                 pago.setAction(Action.Insert);
                 DHistorialPagos dalHistorialPagos = new DHistorialPagos(Pagos.this,HistorialPagos.class);
@@ -141,7 +142,12 @@ public class Pagos extends AppCompatActivity {
         ListView list = (ListView) dialogEmpleado.findViewById(R.id.tableProducts);
         TextView txtNumber = (TextView) dialogEmpleado.findViewById(R.id.textNumber);
         DEmpleado data = new DEmpleado(this, com.megasystem.suitepayment.entity.sale.Empleado.class);
-        List<Empleado> lstProducts = data.listBy( filter, new String[]{});
+        List<Empleado> lstProducts = null;
+        if (filter.length()==0 ){
+            lstProducts = data.list();
+        }else{
+            lstProducts = data.listBy( filter, new String[]{});
+        }
         txtNumber.setText(lstProducts.size() + " " + getString(R.string.registries));
         LazyAdapterProduct adapter = new LazyAdapterProduct(this, dialogEmpleado, lstProducts);
         list.setAdapter(adapter);

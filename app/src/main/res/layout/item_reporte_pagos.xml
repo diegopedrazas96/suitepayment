@@ -1,0 +1,50 @@
+<TableRow xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="0dip"
+    android:background="@android:drawable/list_selector_background"
+    android:clickable="true"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:padding="5dp"
+    android:weightSum="1.0" >
+
+    <TextView
+        android:id="@+id/tvFecha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.20"
+        android:minWidth="70dp"
+        android:text="@string/code" />
+
+    <TextView
+        android:id="@+id/tvEmployeeName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.30"
+        android:minWidth="128dp"
+        android:maxWidth="150dp"
+        android:text="@string/name" />
+
+    <TextView
+        android:id="@+id/tvTipo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.125"
+        android:gravity="center_vertical|center_horizontal"
+        android:minWidth="48dp"
+        android:visibility="invisible"
+        android:text="@string/pagar" />
+
+
+    <TextView
+        android:id="@+id/tvMonto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.125"
+        android:gravity="center_vertical|center_horizontal"
+        android:minWidth="64dp"
+        android:text="@string/amount_text" />
+
+
+
+</TableRow>

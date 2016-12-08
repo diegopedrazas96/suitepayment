@@ -127,6 +127,7 @@
     <string name="saldo_mes">Saldo - Mes</string>
     <string name="printer_mac">MAC Address de Impresora</string>
     <string name="question_exit">Esta seguro de salir de la Aplicación?</string>
+    <string name="question_view_payment">Desea ver el detalle de pagos?</string>
     <string name="title_activity_splash">Splash</string>
     <string name="title_activity_settings">Settings</string>
     <string name="title_activity_welcome">welcome</string>
