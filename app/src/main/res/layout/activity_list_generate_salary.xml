@@ -48,10 +48,11 @@
 
             <com.gc.materialdesign.views.ButtonRectangle
                     android:id="@+id/btnGenerate"
-                    android:layout_width="0px"
+                    android:layout_width="wrap_content"
+                    android:layout_height="112dp"
                     android:layout_weight="0.30"
-                    android:text="@string/generate"
-                    android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large" />
+                    android:text="@string/generate"> </com.gc.materialdesign.views.ButtonRectangle>
+
         </TableRow>
 
         <HorizontalScrollView
@@ -65,7 +66,7 @@
                     android:orientation="vertical" >
 
                 <ListView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/listView"
                         android:layout_alignParentTop="true" android:layout_alignParentBottom="true"

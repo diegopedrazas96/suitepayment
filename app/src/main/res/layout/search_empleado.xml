@@ -18,6 +18,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.6"
                 android:ems="8"
+               android:textSize="@dimen/components_size"
                 android:hint="@string/search"
                 android:inputType="textCapWords" />
 
@@ -41,12 +42,14 @@
         <TextView
                 android:layout_width="0dp"
                 android:layout_weight="0.50"
+            android:textSize="@dimen/components_size"
                 android:gravity="center_vertical|center_horizontal"
-                android:text="@string/name"
+                android:text="@string/name_search"
                 android:textColor="#FFF" />
         <TextView
                 android:layout_width="0dp"
-                android:layout_weight="0.25"
+                android:layout_weight="0.5"
+            android:textSize="@dimen/components_size"
                 android:gravity="center_vertical|center_horizontal"
                 android:text="@string/saldo"
                 android:textColor="#FFF" />

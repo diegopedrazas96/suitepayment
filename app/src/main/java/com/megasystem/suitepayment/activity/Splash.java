@@ -36,6 +36,7 @@ public class Splash extends Activity {
                msClasificador.setDescripcion("Periodo");
                msClasificador.setAction(Action.Insert);
                dalMsClasificador.save(msClasificador);
+               // LLENAR DATOS DE PERIODO
                DPsClasificador dalPsClasificador = new DPsClasificador(Splash.this, PsClasificador.class);
                PsClasificador objClasificador = new PsClasificador();
                objClasificador.setDescripcion("ENERO");
@@ -119,15 +120,76 @@ public class Splash extends Activity {
                objClasificador.setMsclasificadorId(1L);
                objClasificador.setAction(Action.Insert);
                dalPsClasificador.save(objClasificador);
-
+                //LLENAR DATOS DE GESTION
                msClasificador = new MsClasificador();
                msClasificador.setAction(Action.Insert);
                msClasificador.setDescripcion("Gestion");
                dalMsClasificador.save(msClasificador);
+
+               objClasificador = new PsClasificador();
+               objClasificador.setDescripcion("2017");
+               objClasificador.setEstado(1L);
+               objClasificador.setMsclasificadorId(2L);
+               objClasificador.setAction(Action.Insert);
+               dalPsClasificador.save(objClasificador);
+
+                // LLENAR DATOS DE GASTO
                msClasificador = new MsClasificador();
                msClasificador.setAction(Action.Insert);
                msClasificador.setDescripcion("Gasto");
                dalMsClasificador.save(msClasificador);
+
+               objClasificador = new PsClasificador();
+               objClasificador.setDescripcion("VIVERES");
+               objClasificador.setEstado(1L);
+               objClasificador.setMsclasificadorId(3L);
+               objClasificador.setAction(Action.Insert);
+               dalPsClasificador.save(objClasificador);
+
+               objClasificador = new PsClasificador();
+               objClasificador.setDescripcion("COMBUSTIBLE");
+               objClasificador.setEstado(1L);
+               objClasificador.setMsclasificadorId(3L);
+               objClasificador.setAction(Action.Insert);
+               dalPsClasificador.save(objClasificador);
+
+               objClasificador = new PsClasificador();
+               objClasificador.setDescripcion("ALIMENTO DE GANADO");
+               objClasificador.setEstado(1L);
+               objClasificador.setMsclasificadorId(3L);
+               objClasificador.setAction(Action.Insert);
+               dalPsClasificador.save(objClasificador);
+
+               objClasificador = new PsClasificador();
+               objClasificador.setDescripcion("REPUESTOS");
+               objClasificador.setEstado(1L);
+               objClasificador.setMsclasificadorId(3L);
+               objClasificador.setAction(Action.Insert);
+               dalPsClasificador.save(objClasificador);
+
+               objClasificador = new PsClasificador();
+               objClasificador.setDescripcion("ENVIO DE DINERO");
+               objClasificador.setEstado(1L);
+               objClasificador.setMsclasificadorId(3L);
+               objClasificador.setAction(Action.Insert);
+               dalPsClasificador.save(objClasificador);
+
+               objClasificador = new PsClasificador();
+               objClasificador.setDescripcion("VENTA DE GANADO");
+               objClasificador.setEstado(2L);
+               objClasificador.setMsclasificadorId(3L);
+               objClasificador.setAction(Action.Insert);
+               dalPsClasificador.save(objClasificador);
+
+               objClasificador = new PsClasificador();
+               objClasificador.setDescripcion("MATERIAL DE CONSTRUCCION");
+               objClasificador.setEstado(1L);
+               objClasificador.setMsclasificadorId(3L);
+               objClasificador.setAction(Action.Insert);
+               dalPsClasificador.save(objClasificador);
+
+
+
            } else {
 
 

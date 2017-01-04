@@ -28,9 +28,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="0.90"
                 android:gravity="right|center_vertical"
-                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
                 android:textStyle="bold"
-                android:textSize="16dp"
                 android:textColor="@color/gray"/>
     </TableRow>
 

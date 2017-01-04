@@ -600,7 +600,9 @@
 package com.megasystem.suitepayment.activity;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -636,6 +638,7 @@ public class ListGenerateSalary extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_generate_salary);
+        this.setTitle(R.string.title_generate);
         spPeriodType = (Spinner) findViewById(R.id.spPeriodType);
         spMonthType = (Spinner) findViewById(R.id.spMonthType);
         lstSelectedEmpleados = new ArrayList<Empleado>();
@@ -668,25 +671,34 @@ public class ListGenerateSalary extends AppCompatActivity {
         btnGenerate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DHistorialPagos dalHistorialPagos = new DHistorialPagos(ListGenerateSalary.this,HistorialPagos.class);
-                for (Empleado objEmpleado : lstEmpleados){
-                    HistorialPagos objHistorialPago ;
-                    objHistorialPago = dalHistorialPagos.getByEmpleadoAndPeriod(objEmpleado.getId(),gestion.get(spPeriodType.getSelectedItemPosition()).getId(),periodo.get(spMonthType.getSelectedItemPosition()).getId());
-                    if(objHistorialPago.getId() == null){
-                        objHistorialPago = new HistorialPagos();
-                        objHistorialPago.setAction(Action.Insert);
-                        objHistorialPago.setFecha(new Date());
-                        objHistorialPago.setEmpleadoId(objEmpleado.getId());
-                        objHistorialPago.setPeriodoIdc(periodo.get(spMonthType.getSelectedItemPosition()).getId());
-                        objHistorialPago.setGestionIdc(gestion.get(spPeriodType.getSelectedItemPosition()).getId());
-                        objHistorialPago.setPagar(objEmpleado.getSalario());
-                        objHistorialPago.setPagado(0D);
-                        objHistorialPago.setSaldo(objEmpleado.getSalario());
-                        dalHistorialPagos.save(objHistorialPago);
-                    }else{
-                        Toast.makeText(ListGenerateSalary.this,"Ya existe registro de planilla para el empleado - " + objEmpleado.getNombre() + " para este mes y gestion.",Toast.LENGTH_LONG).show();
-                    }
-                }
+                new AlertDialog.Builder(ListGenerateSalary.this).setTitle(getString(R.string.message))
+                        .setMessage(getString(R.string.question_generate_salary) + " para " + periodo.get(spMonthType.getSelectedItemPosition()).getDescripcion() + " del " + gestion.get(spPeriodType.getSelectedItemPosition()).getDescripcion() + "?")
+                        .setNegativeButton(android.R.string.no, null)
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+
+                            public void onClick(DialogInterface arg0, int arg1) {
+                                DHistorialPagos dalHistorialPagos = new DHistorialPagos(ListGenerateSalary.this,HistorialPagos.class);
+                                for (Empleado objEmpleado : lstEmpleados){
+                                    HistorialPagos objHistorialPago ;
+                                    objHistorialPago = dalHistorialPagos.getByEmpleadoAndPeriod(objEmpleado.getId(),gestion.get(spPeriodType.getSelectedItemPosition()).getId(),periodo.get(spMonthType.getSelectedItemPosition()).getId());
+                                    if(objHistorialPago.getId() == null){
+                                        objHistorialPago = new HistorialPagos();
+                                        objHistorialPago.setAction(Action.Insert);
+                                        objHistorialPago.setFecha(new Date());
+                                        objHistorialPago.setEmpleadoId(objEmpleado.getId());
+                                        objHistorialPago.setPeriodoIdc(periodo.get(spMonthType.getSelectedItemPosition()).getId());
+                                        objHistorialPago.setGestionIdc(gestion.get(spPeriodType.getSelectedItemPosition()).getId());
+                                        objHistorialPago.setPagar(objEmpleado.getSalario());
+                                        objHistorialPago.setPagado(0D);
+                                        objHistorialPago.setSaldo(objEmpleado.getSalario());
+                                        dalHistorialPagos.save(objHistorialPago);
+                                    }else{
+                                        Toast.makeText(ListGenerateSalary.this,"Ya existe registro de planilla para el empleado - " + objEmpleado.getNombre() + " para este mes y gestion.",Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                            }
+                        }).create().show();
+
             }
         });
 

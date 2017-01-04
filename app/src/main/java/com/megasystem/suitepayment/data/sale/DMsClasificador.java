@@ -30,7 +30,7 @@ public class DMsClasificador extends Wrapper {
         return (MsClasificador) this.get("select * from msclasificador");
     }
 
-    public MsClasificador getById(String idCliente) {
-        return (MsClasificador) this.get("select * from msclasificador where IdCliente= '" + idCliente+ "'");
+    public MsClasificador getById(Long id) {
+        return (MsClasificador) this.get("select * from msclasificador where Id= " + id+ "");
     }
 }

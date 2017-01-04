@@ -10,16 +10,18 @@
 
     <TextView
             android:id="@+id/empName"
-            android:layout_width="0dp"
-            android:layout_weight="0.55"
+            android:layout_width="wrap_content"
+            android:layout_weight="0.5"
             android:maxWidth="150dp"
+        android:textSize="@dimen/components_size"
             android:gravity="left|center_vertical"
             android:text="@string/employee_info" />
     <TextView
             android:id="@+id/empSalary"
-            android:layout_width="0dp"
-            android:layout_weight="0.20"
+            android:layout_width="wrap_content"
+            android:layout_weight="0.5"
             android:maxWidth="150dp"
+        android:textSize="@dimen/components_size"
             android:gravity="right|center_vertical"
             android:text="@string/saldo" />
 

@@ -29,6 +29,8 @@ public class ListEmpleado extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_empleado);
+        this.setTitle(R.string.list_empleados);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         DEmpleado dalEmpleado = new DEmpleado(ListEmpleado.this, com.megasystem.suitepayment.entity.sale.Empleado.class);
         lstEmpleados = dalEmpleado.list();
         lvEmpleados = (ListView) findViewById(R.id.listView);
@@ -40,11 +42,15 @@ public class ListEmpleado extends AppCompatActivity {
                 Intent intent = new Intent(ListEmpleado.this, com.megasystem.suitepayment.activity.Empleado.class);
                 actionForm = 1;
                 intent.putExtra("actionForm", actionForm);
-                startActivity(intent);
+                startActivityForResult(intent,orderRequest);
             }
         });
     }
-
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return false;
+    }
     public class Adapter extends ArrayAdapter<Empleado> {
 
         private final Context context;

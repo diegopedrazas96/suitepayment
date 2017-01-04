@@ -34,6 +34,7 @@ public class ListReport extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_empleado);
+        this.setTitle(R.string.list_reports);
         lvItems = (ListView) findViewById(R.id.listView);
         btnadd = (ButtonFloat) findViewById(R.id.add);
         btnadd.setVisibility(View.GONE);
@@ -41,8 +42,8 @@ public class ListReport extends AppCompatActivity {
         lstOptions.add("Generar Planilla");
         lstOptions.add("Reporte de Gastos");
         lstOptions.add("Historial de Pagos");
-        lstOptions.add("Reporte de Pagos");
-        lstOptions.add("Backup Base de Datos");
+     //   lstOptions.add("Reporte de Pagos");
+     //   lstOptions.add("Backup Base de Datos");
         lvItems.setAdapter(new Adapter(ListReport.this, lstOptions));
     }
 
@@ -80,13 +81,13 @@ public class ListReport extends AppCompatActivity {
                         intent = new Intent(ListReport.this,ReporteHistorialPagos.class);
                         startActivity(intent);
                     }
-                    if (emp.equals("Reporte de Pagos")) {
-                        intent = new Intent(ListReport.this,ReportePagos.class);
-                        startActivity(intent);
-                    }
-                    if(emp.equals("Backup Base de Datos")){
-                        backupBase();
-                    }
+//                    if (emp.equals("Reporte de Pagos")) {
+//                        intent = new Intent(ListReport.this,ReportePagos.class);
+//                        startActivity(intent);
+//                    }
+//                    if(emp.equals("Backup Base de Datos")){
+//                        backupBase();
+                    //                   }
                 }
             });
             return view;

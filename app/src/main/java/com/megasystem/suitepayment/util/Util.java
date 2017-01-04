@@ -146,6 +146,17 @@ public class Util {
         }
         return doubleString;
     }
+    public static String formatDoubleWithOuTDecimal(double dbl) {
+        String doubleString = "";
+        DecimalFormatSymbols dfs=DecimalFormatSymbols.getInstance();
+        dfs.setDecimalSeparator('.');
+        DecimalFormat format = new DecimalFormat("#",dfs);
+        doubleString = format.format(Math.round(dbl * 100) / 100d);
+        if (dbl < 1) {
+            doubleString = "0" + doubleString;
+        }
+        return doubleString;
+    }
     public static String formatDoubleHundred(double dbl) {
         String doubleString = "";
         DecimalFormat format = new DecimalFormat("###,###.00");

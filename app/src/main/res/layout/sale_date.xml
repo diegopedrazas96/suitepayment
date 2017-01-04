@@ -10,6 +10,8 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_weight="1"
+
+        android:layout_gravity="center_horizontal|center_vertical"
         android:calendarViewShown="false"/>
 
     <TableRow
@@ -21,7 +23,7 @@
 
         <com.gc.materialdesign.views.ButtonRectangle
                 android:id="@+id/btnCancel"
-                android:background="@color/blue"
+                android:background="@color/red"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"

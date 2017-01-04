@@ -32,6 +32,7 @@ public class ReporteGastos extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reporte_gastos);
+        this.setTitle(R.string.title_spend);
         tvTotal = (TextView) findViewById(R.id.total);
         desdeDate = (Button) findViewById(R.id.desdeDate);
         hastaDate = (Button) findViewById(R.id.hastaDate);
@@ -65,7 +66,7 @@ public class ReporteGastos extends AppCompatActivity {
     private void loadDialogDate(){
         dateDialog = new Dialog(ReporteGastos.this);
         dateDialog.setContentView(R.layout.sale_date);
-        dateDialog.setTitle(getString(R.string.pick_address));
+        dateDialog.setTitle(getString(R.string.date_title));
 
         final DatePicker deliveryDate = (DatePicker) dateDialog.findViewById(R.id.deliveryDate);
 
@@ -87,7 +88,7 @@ public class ReporteGastos extends AppCompatActivity {
         btnSaveDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String fecha1 = new SimpleDateFormat("yyyy/MM/dd HH:mm").format(Util.getDateFromDatePicket(deliveryDate)).toString();
+                String fecha1 = new SimpleDateFormat("yyyy-MM-dd").format(Util.getDateFromDatePicket(deliveryDate)).toString();
                 desdeDate.setText(fecha1);
                 dateDialog.dismiss();
             }
@@ -97,7 +98,7 @@ public class ReporteGastos extends AppCompatActivity {
     private void loadDialogDate2(){
         dateDialog2 = new Dialog(ReporteGastos.this);
         dateDialog2.setContentView(R.layout.sale_date);
-        dateDialog2.setTitle(getString(R.string.pick_address));
+        dateDialog2.setTitle(getString(R.string.date_title));
 
         final DatePicker deliveryDate = (DatePicker) dateDialog2.findViewById(R.id.deliveryDate);
 
@@ -119,7 +120,7 @@ public class ReporteGastos extends AppCompatActivity {
         btnSaveDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String fecha2 = new SimpleDateFormat("yyyy/MM/dd HH:mm").format(Util.getDateFromDatePicket(deliveryDate)).toString();
+                String fecha2 = new SimpleDateFormat("yyyy-MM-dd").format(Util.getDateFromDatePicket(deliveryDate)).toString();
                 hastaDate.setText(fecha2);
                 dateDialog2.dismiss();
                //objSale.setDeliveryDate(Util.getDateFromDatePicket(deliveryDate));

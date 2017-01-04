@@ -33,6 +33,7 @@ public class ReporteHistorialPagos extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reporte_historial_pagos);
+        this.setTitle(R.string.title_payment_history);
         tvTotal = (TextView) findViewById(R.id.total);
         spPeriodType = (Spinner) findViewById(R.id.spPeriodType);
         spMonthType = (Spinner) findViewById(R.id.spMonthType);
@@ -129,7 +130,7 @@ public class ReporteHistorialPagos extends AppCompatActivity {
                 public boolean onLongClick(View v) {
                     v.requestFocus();
                     new AlertDialog.Builder(ReporteHistorialPagos.this).setTitle(getString(R.string.app_name))
-                            .setMessage(getString(R.string.question_view_payment))
+                            .setMessage(getString(R.string.question_view_payment )+ " - " + obj.getEmpleado().getNombre())
                             .setNegativeButton(android.R.string.no, null)
                             .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
 

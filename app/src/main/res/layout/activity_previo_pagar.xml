@@ -5,7 +5,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    >
+    tools:context="com.megasystem.suitepayment.activity.ReporteGastos">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,53 +14,33 @@
         android:layout_alignParentTop="true"
         android:orientation="vertical" >
 
-
-        <TableRow
-                android:id="@+id/tableRow"
-                android:layout_width="match_parent"
-                android:focusable="true"
-                android:focusableInTouchMode="true"
-                android:layout_height="50dp"
-                android:padding="4dip"
-                android:weightSum="1"
-                android:gravity="center_horizontal|center_vertical">
-
-
-
-            <TextView
-                    android:id="@+id/tvEmpleado"
-                    android:layout_width="match_parent"
-                    android:layout_weight="0.5"
-                    android:text="@string/employee_info"
-                    android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large" />
-            <com.gc.materialdesign.views.ButtonRectangle
-                android:id="@+id/btnSearch"
-                android:layout_width="match_parent"
-                android:layout_weight="0.5"
-                android:text="@string/pagar"
-                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large" />
-        </TableRow>
         <TableRow
             android:id="@+id/tableRow2"
             android:layout_width="match_parent"
             android:focusable="true"
             android:focusableInTouchMode="true"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:padding="4dip"
             android:weightSum="1"
             android:gravity="center_horizontal|center_vertical">
-            <TextView
-
-                android:layout_width="match_parent"
-                android:layout_weight="0.5"
-                android:text="@string/saldo"
-                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large" />
 
             <TextView
-                android:id="@+id/tvSaldo"
-                android:layout_width="match_parent"
-                android:layout_weight="0.5"
-                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large" />
+                android:layout_width="wrap_content"
+                android:layout_weight="0.3"
+                android:ems="8"
+
+                android:text="@string/period"
+                />
+            <com.gc.materialdesign.views.ButtonRectangle
+                android:id="@+id/btnSelect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.7"
+                android:text="@string/select"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+
+
 
 
 
@@ -88,22 +68,15 @@
                         android:padding="5dip"
                         android:weightSum="1.0" >
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.10"
-                            android:gravity="center_vertical|center_horizontal"
-                            android:minWidth="48dp"
-                            android:text="@string/date"
-                            android:textColor="#FFF" />
+
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.40"
+                            android:layout_weight="0.50"
                             android:gravity="center_vertical|center_horizontal"
                             android:minWidth="128dp"
-                            android:text="@string/description"
+                            android:text="@string/month"
                             android:textColor="#FFF" />
 
                         <TextView
@@ -112,8 +85,7 @@
                             android:layout_weight="0.125"
                             android:gravity="center_vertical|center_horizontal"
                             android:minWidth="48dp"
-                            android:text="@string/spending_type"
-                            android:visibility="invisible"
+                            android:text="@string/pagar"
                             android:textColor="#FFF" />
 
 
@@ -121,10 +93,18 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.250"
+                            android:layout_weight="0.125"
                             android:gravity="center_vertical|center_horizontal"
                             android:minWidth="64dp"
-                            android:text="@string/amount_text"
+                            android:text="@string/pagado"
+                            android:textColor="#FFF" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.125"
+                            android:gravity="center_vertical|center_horizontal"
+                            android:minWidth="64dp"
+                            android:text="@string/saldo"
                             android:textColor="#FFF" />
 
 
@@ -181,7 +161,7 @@
                 android:layout_marginRight="5dp"
                 android:layout_marginTop="5dp"
                 android:layout_weight="0.2"
-                android:text="@string/accept"
+                android:text="@string/valor_cero"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="#FFF" />
         </TableRow>

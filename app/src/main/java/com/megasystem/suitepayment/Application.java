@@ -7,7 +7,7 @@ import com.megasystem.suitepayment.service.Position;
 
 
 public class Application extends android.app.Application {
-    public final static String DataBaseName = "database4";
+    public final static String DataBaseName = "database6";
     public final static String tag = "Megasystem";
     public final static int locationUpdateTime = 50000;
     public final static int locationMinDistance = 20;

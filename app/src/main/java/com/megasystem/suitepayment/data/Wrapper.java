@@ -38,7 +38,12 @@ public abstract class Wrapper<T> extends SQLiteOpenHelper {
         super(context, Application.DataBaseName + ".db", null, 1);
         this.type = type;
     }
+    public Wrapper(Context context) {
+        super(context, Application.DataBaseName + ".db", null, 1);
+        this.context=context;
+        //dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.US);
 
+    }
     public Wrapper(Context context, SQLiteDatabase connection, Class<T> type) {
         super(context, "database.db", null, 1);
         this.connection = connection;
@@ -295,7 +300,35 @@ public abstract class Wrapper<T> extends SQLiteOpenHelper {
         this.close();
         return entity;
     }
-
+    protected List<Map> loadGenerigMap(String strQuery) {
+        List<Map> lstResult = new ArrayList<Map>();
+        Map obj;
+        SQLiteDatabase objDb = this.getReadableDatabase();
+        Cursor cursor = null;
+        try {
+            cursor = objDb.rawQuery(strQuery, new String[] {});
+            if (cursor != null) {
+                while (cursor.moveToNext()) {
+                    obj = new HashMap();
+                    for (int index = 0; index < cursor.getColumnCount(); index++) {
+                        obj.put(cursor.getColumnName(index),
+                                cursor.getString(index));
+                    }
+                    lstResult.add(obj);
+                }
+                cursor.close();
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+        objDb.close();
+        this.close();
+        return lstResult;
+    }
     @Override
     public void onCreate(SQLiteDatabase db) {
 

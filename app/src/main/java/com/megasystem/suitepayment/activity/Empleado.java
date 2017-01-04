@@ -9,6 +9,7 @@ import com.gc.materialdesign.views.Button;
 import com.megasystem.suitepayment.R;
 import com.megasystem.suitepayment.data.sale.DEmpleado;
 import com.megasystem.suitepayment.entity.Action;
+import com.megasystem.suitepayment.util.Util;
 
 
 public class Empleado extends AppCompatActivity {
@@ -16,6 +17,7 @@ public class Empleado extends AppCompatActivity {
     private  EditText etAddress;
     private EditText etPhone;
     private EditText etSalary;
+    private EditText etEstado;
     private Button btnSave;
     private  Button btnCancel;
     private int actionForm=0;
@@ -24,13 +26,14 @@ public class Empleado extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_empleado);
-
+        this.setTitle(R.string.empleado);
         actionForm = getIntent().getExtras().getInt("actionForm");
 
         etName = (EditText) findViewById(R.id.etName);
         etAddress = (EditText) findViewById(R.id.etDireccion);
         etPhone = (EditText) findViewById(R.id.etPhone);
         etSalary = (EditText) findViewById(R.id.etSalary);
+        etEstado = (EditText) findViewById(R.id.etEstado);
         btnSave = (Button) findViewById(R.id.btnSave);
         btnCancel =(Button) findViewById(R.id.btnCancel);
         if(actionForm == 2){
@@ -38,7 +41,8 @@ public class Empleado extends AppCompatActivity {
             etName.setText(objEmpleado.getNombre());
             etAddress.setText(objEmpleado.getDireccion());
             etPhone.setText(objEmpleado.getTelefono());
-            etSalary.setText(String.valueOf(objEmpleado.getSalario()));
+            etEstado.setText(String.valueOf(objEmpleado.getEstado()));
+            etSalary.setText(Util.formatDoubleWithOuTDecimal(objEmpleado.getSalario()));
         }
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,6 +55,7 @@ public class Empleado extends AppCompatActivity {
                     empleado.setTelefono(etPhone.getText().toString());
                     empleado.setSalario(Double.valueOf(etSalary.getText().toString()));
                     empleado.setAction(Action.Insert);
+                    empleado.setEstado(1);
                     dalEmpleado.save(empleado);
                     //Toast.makeText(Empleado.this,"Guardado Correctamente.!",Toast.LENGTH_LONG).show();
                     Intent returnIntent = new Intent();
@@ -64,6 +69,7 @@ public class Empleado extends AppCompatActivity {
                     objEmpleado.setTelefono(etPhone.getText().toString());
                     objEmpleado.setSalario(Double.valueOf(etSalary.getText().toString()));
                     objEmpleado.setAction(Action.Update);
+                    objEmpleado.setEstado(Integer.valueOf(etEstado.getText().toString()));
                     dalEmpleado.save(objEmpleado);
                     Intent returnIntent = new Intent();
                     setResult(RESULT_OK, returnIntent);

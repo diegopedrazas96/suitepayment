@@ -13,7 +13,7 @@
             android:layout_gravity="center"
             android:gravity="center_horizontal|bottom"
             android:text="@string/app_name"
-            android:textSize="24dp"
+            android:textSize="72dp"
             android:textAppearance="@android:style/TextAppearance.Large"
             android:textColor="@color/blue50"
             android:textStyle="bold" />
@@ -24,7 +24,7 @@
         android:layout_gravity="center"
         android:gravity="center_horizontal|bottom"
         android:text="@string/app_name"
-        android:textAppearance="@android:style/TextAppearance.Large"
+        android:textSize="@dimen/button_size"
         android:textColor="#131314"
         android:textStyle="bold" />
 

@@ -29,11 +29,14 @@ public class DPsClasificador extends Wrapper {
         return super.list("select * from psclasificador where msclasificadorid= " + id);
     }
 
+    public List<PsClasificador> listById(Long id) {
+        return super.list("select * from psclasificador where id= " + id);
+    }
     public PsClasificador get() {
         return (PsClasificador) this.get("select * from psclasificador");
     }
 
-    public PsClasificador getById(Long idCliente) {
-        return (PsClasificador) this.get("select * from psclasificador where id= " + idCliente );
+    public PsClasificador getById(Long id) {
+        return (PsClasificador) this.get("select * from psclasificador where id= " + id );
     }
 }

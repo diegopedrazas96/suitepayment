@@ -45,7 +45,7 @@ public class Clasificadores extends AppCompatActivity {
             public void onClick(View v) {
                 dialog = new Dialog(Clasificadores.this);
                 dialog.setContentView(R.layout.dialog_clasificador);
-                dialog.setTitle(getString(R.string.device_list));
+                dialog.setTitle(getString(R.string.clasifier));
                 final EditText etGroup = (EditText) dialog.findViewById(R.id.etGroup);
                 etGroup.setText(objMsClasificador.getDescripcion());
                 final EditText etDescripcion = (EditText) dialog.findViewById(R.id.etDescripcion);

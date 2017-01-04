@@ -1,6 +1,8 @@
 <resources>
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:textSize">@dimen/components_size</item>
+        <item name="android:titleTextStyle">@dimen/components_size</item>
         <!--<item name="colorPrimary">@color/blue</item>-->
         <!--<item name="colorPrimaryDark">@color/blue50</item>-->
         <!--<item name="colorAccent">@color/gray</item>-->

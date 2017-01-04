@@ -21,7 +21,8 @@ public class DGasto extends Wrapper {
         return super.list("select * from gasto");
     }
     public List<Gasto> listByMonthPeriod(String fecha1,String fecha2) {
-        return super.list("select * from gasto where fecha between datetime('"+fecha1+"') and  datetime('"+fecha2+"')");
+        return super.list("select * from gasto where fecha between '"+fecha1+" 00:00:00' and  '"+fecha2+" 23:59:59'");
+        //return super.list("select * from gasto where fecha > date('"+fecha1+"')");
     }
 
     @SuppressWarnings("unchecked")

@@ -27,7 +27,7 @@
             android:gravity="center_horizontal|center_vertical">
 
             <TextView
-                    android:layout_width="0dip"
+                    android:layout_width="20dip"
                     android:layout_weight="0.15"
                     android:ems="8"
                     android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
@@ -36,15 +36,15 @@
             <Button
                     android:id="@+id/desdeDate"
                     android:layout_width="0dip"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.25"
+                android:layout_height="112dp"
+                    android:layout_weight="0.27"
                     android:text="@string/date_title"
                     android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
                     />
 
 
             <TextView
-                android:layout_width="0dip"
+                android:layout_width="20dip"
                 android:layout_weight="0.12"
                 android:ems="8"
                 android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
@@ -54,16 +54,17 @@
             <Button
                     android:id="@+id/hastaDate"
                     android:layout_width="0dip"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.25"
+                    android:layout_height="112dp"
+                    android:layout_weight="0.27"
                     android:text="@string/date_title"
                     android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
                     />
 
             <com.gc.materialdesign.views.ButtonRectangle
                 android:id="@+id/btnSearch"
-                android:layout_width="0px"
-                android:layout_weight="0.23"
+                android:layout_width="wrap_content"
+                android:layout_height="112dp"
+                android:layout_weight="0.20"
                 android:text="@string/search"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
         </TableRow>
