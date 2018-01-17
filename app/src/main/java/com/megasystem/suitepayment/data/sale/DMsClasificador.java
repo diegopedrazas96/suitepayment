@@ -18,19 +18,19 @@ public class DMsClasificador extends Wrapper {
 
     @SuppressWarnings("unchecked")
     public List<MsClasificador> list() {
-        return super.list("select * from msclasificador");
+        return super.list("select * from "+tableName +"");
     }
 
     @SuppressWarnings("unchecked")
     public List<MsClasificador> list(String order) {
-        return super.list("select * from msclasificador order by " + order);
+        return super.list("select * from "+tableName +" order by " + order);
     }
 
     public MsClasificador get() {
-        return (MsClasificador) this.get("select * from msclasificador");
+        return (MsClasificador) this.get("select * from "+tableName +"");
     }
 
     public MsClasificador getById(Long id) {
-        return (MsClasificador) this.get("select * from msclasificador where Id= " + id+ "");
+        return (MsClasificador) this.get("select * from "+tableName +" where Id= " + id+ "");
     }
 }

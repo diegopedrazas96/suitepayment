@@ -188,8 +188,71 @@ public class Splash extends Activity {
                objClasificador.setAction(Action.Insert);
                dalPsClasificador.save(objClasificador);
 
+               msClasificador = new MsClasificador();
+               msClasificador.setDescripcion("Destino");
+               msClasificador.setAction(Action.Insert);
+               dalMsClasificador.save(msClasificador);
 
+               objClasificador = new PsClasificador();
+               objClasificador.setDescripcion("SOTALERA");
+               objClasificador.setEstado(1L);
+               objClasificador.setMsclasificadorId(4L);
+               objClasificador.setAction(Action.Insert);
+               dalPsClasificador.save(objClasificador);
 
+               objClasificador = new PsClasificador();
+               objClasificador.setDescripcion("CAMPO VERDE");
+               objClasificador.setEstado(1L);
+               objClasificador.setMsclasificadorId(4L);
+               objClasificador.setAction(Action.Insert);
+               dalPsClasificador.save(objClasificador);
+
+               objClasificador = new PsClasificador();
+               objClasificador.setDescripcion("ROCOCO");
+               objClasificador.setEstado(1L);
+               objClasificador.setMsclasificadorId(4L);
+               objClasificador.setAction(Action.Insert);
+               dalPsClasificador.save(objClasificador);
+
+               objClasificador = new PsClasificador();
+               objClasificador.setDescripcion("RANCHO NUEVO");
+               objClasificador.setEstado(1L);
+               objClasificador.setMsclasificadorId(4L);
+               objClasificador.setAction(Action.Insert);
+               dalPsClasificador.save(objClasificador);
+
+               objClasificador = new PsClasificador();
+               objClasificador.setDescripcion("LA CANDELARIA");
+               objClasificador.setEstado(1L);
+               objClasificador.setMsclasificadorId(4L);
+               objClasificador.setAction(Action.Insert);
+               dalPsClasificador.save(objClasificador);
+
+               msClasificador = new MsClasificador();
+               msClasificador.setDescripcion("Tipo Empleado");
+               msClasificador.setAction(Action.Insert);
+               dalMsClasificador.save(msClasificador);
+
+               objClasificador = new PsClasificador();
+               objClasificador.setDescripcion("MENSUAL");
+               objClasificador.setEstado(1L);
+               objClasificador.setMsclasificadorId(5L);
+               objClasificador.setAction(Action.Insert);
+               dalPsClasificador.save(objClasificador);
+
+               objClasificador = new PsClasificador();
+               objClasificador.setDescripcion("TEMPORAL");
+               objClasificador.setEstado(1L);
+               objClasificador.setMsclasificadorId(5L);
+               objClasificador.setAction(Action.Insert);
+               dalPsClasificador.save(objClasificador);
+
+               objClasificador = new PsClasificador();
+               objClasificador.setDescripcion("POR OBRA");
+               objClasificador.setEstado(1L);
+               objClasificador.setMsclasificadorId(5L);
+               objClasificador.setAction(Action.Insert);
+               dalPsClasificador.save(objClasificador);
            } else {
 
 

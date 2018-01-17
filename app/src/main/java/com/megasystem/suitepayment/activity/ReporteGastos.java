@@ -18,6 +18,7 @@ import com.megasystem.suitepayment.util.Util;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class ReporteGastos extends AppCompatActivity {
@@ -38,6 +39,8 @@ public class ReporteGastos extends AppCompatActivity {
         hastaDate = (Button) findViewById(R.id.hastaDate);
         loadDialogDate();
         loadDialogDate2();
+        desdeDate.setText(new SimpleDateFormat("yyyy-MM-dd").format(new Date()).toString());
+        hastaDate.setText(new SimpleDateFormat("yyyy-MM-dd").format(new Date()).toString());
         desdeDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -154,7 +157,7 @@ public class ReporteGastos extends AppCompatActivity {
             row.setBackgroundColor((sw = !sw) ? Color.WHITE : Color.LTGRAY);
 
             txtCode = (TextView) row.findViewById(R.id.tvFecha);
-            String dateFormated = new SimpleDateFormat("dd/MM/yyyy HH:mm").format(obj.getFecha()).toString();
+            String dateFormated = new SimpleDateFormat("dd/MM/yyyy").format(obj.getFecha()).toString();
            // txtDate.setText(dateFormated);
             txtCode.setText(dateFormated);
 

@@ -45,6 +45,7 @@
             android:textSize="@dimen/components_size"
                 android:gravity="center_vertical|center_horizontal"
                 android:text="@string/name_search"
+            android:id="@+id/tvOverSearch"
                 android:textColor="#FFF" />
         <TextView
                 android:layout_width="0dp"

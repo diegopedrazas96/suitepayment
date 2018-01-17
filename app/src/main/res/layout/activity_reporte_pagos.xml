@@ -36,9 +36,10 @@
             <com.gc.materialdesign.views.ButtonRectangle
                 android:id="@+id/btnSearch"
                 android:layout_width="match_parent"
+                android:layout_height="112dp"
                 android:layout_weight="0.5"
                 android:text="@string/pagar"
-                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large" />
+                />
         </TableRow>
         <TableRow
             android:id="@+id/tableRow2"

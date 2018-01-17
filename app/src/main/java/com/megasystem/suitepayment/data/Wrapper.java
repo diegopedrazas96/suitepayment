@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.text.TextUtils;
 import android.util.Log;
+
 import com.googlecode.openbeans.PropertyDescriptor;
 import com.megasystem.suitepayment.Application;
 import com.megasystem.suitepayment.entity.Action;
@@ -14,153 +15,382 @@ import com.megasystem.suitepayment.entity.Entity;
 import com.megasystem.suitepayment.entity.annotation.Ignore;
 import com.megasystem.suitepayment.entity.annotation.Key;
 import com.megasystem.suitepayment.entity.annotation.Nullable;
-import com.megasystem.suitepayment.entity.sale.*;
+import com.megasystem.suitepayment.entity.sale.Clientes;
+import com.megasystem.suitepayment.entity.sale.Customer;
+import com.megasystem.suitepayment.entity.sale.Empleado;
+import com.megasystem.suitepayment.entity.sale.Gasto;
+import com.megasystem.suitepayment.entity.sale.HistorialPagos;
+import com.megasystem.suitepayment.entity.sale.MsClasificador;
+import com.megasystem.suitepayment.entity.sale.Pago;
+import com.megasystem.suitepayment.entity.sale.PagoEmpleado;
+import com.megasystem.suitepayment.entity.sale.PsClasificador;
+import com.megasystem.suitepayment.entity.sale.User;
+import com.megasystem.suitepayment.entity.sale.Venta;
 
-import java.lang.annotation.Annotation;
+import joquery.CQ;
+import joquery.Grouping;
+import joquery.ResultTransformer;
+import joquery.core.QueryException;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Type;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
- * Created by aortuno on 9/15/2015.
+ * Created by fcr on 9/15/2015.
+ *
+ *
  */
 public abstract class Wrapper<T> extends SQLiteOpenHelper {
-
     protected Class<T> type;
-
     private SQLiteDatabase connection = null;
-
+    protected String tableName;
+    private List<Field> listFields;
     protected Context context;
+    private DateFormat dateFormat;
+    private static int versionDataBase=1;
+
+
 
     public Wrapper(Context context, Class<T> type) {
-        super(context, Application.DataBaseName + ".db", null, 1);
+        super(context, Application.DataBaseName + ".db", null, versionDataBase);
         this.type = type;
+        this.context=context;
+        tableName = getTableName(type);
+        listFields = getListField(type);
+        dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.US);
+
     }
     public Wrapper(Context context) {
-        super(context, Application.DataBaseName + ".db", null, 1);
+        super(context, Application.DataBaseName + ".db", null, versionDataBase);
         this.context=context;
-        //dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.US);
+        dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.US);
 
     }
+
     public Wrapper(Context context, SQLiteDatabase connection, Class<T> type) {
-        super(context, "database.db", null, 1);
+        super(context, Application.DataBaseName + ".db", null, versionDataBase);
         this.connection = connection;
         this.type = type;
+        tableName = getTableName(type);
+        listFields = getListField(type);
+        dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.US);
+    }
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        System.out.println("Nueva version:");
+        System.out.println("-" + oldVersion);
+        System.out.println("-" + newVersion);
+        updateScripts(db);
     }
 
-    public void clean(Entity entity) {
+    private void updateScripts(SQLiteDatabase db) {
+        System.out.println("Borrando Tablas");
+        try {
+            List<String> tables = new ArrayList<String>();
+            Cursor cursor = db.rawQuery("SELECT * FROM sqlite_master WHERE type='table';", null);
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()) {
+                String tableName = cursor.getString(1);
+                if (!tableName.equals("android_metadata") && !tableName.equals("sqlite_sequence")) {
+                    System.out.println(tableName);
+                    tables.add(tableName);
+                }
+                cursor.moveToNext();
+            }
+            cursor.close();
+            for (String tableName : tables) {
+                db.execSQL("DROP TABLE IF EXISTS " + tableName);
+            }
+            createScripts(db);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+        createScripts(db);
+    }
+    private void createScripts(SQLiteDatabase db){
+        db.execSQL(getCreate(Customer.class));
+        db.execSQL(getCreate(User.class));
+        db.execSQL(getCreate(Empleado.class));
+        db.execSQL(getCreate(MsClasificador.class));
+        db.execSQL(getCreate(PsClasificador.class));
+        db.execSQL(getCreate(Pago.class));
+        db.execSQL(getCreate(PagoEmpleado.class));
+        db.execSQL(getCreate(Venta.class));
+        db.execSQL(getCreate(Gasto.class));
+        db.execSQL(getCreate(Clientes.class));
+        db.execSQL(getCreate(HistorialPagos.class));
+    }
+
+    public <T extends Entity> String extract(List<T> list, String metodo) throws QueryException {
+        List<Grouping<Object, T>> grouped = (List<Grouping<Object, T>>) CQ
+                .<T, T> query(list).group().groupBy(metodo).list();
+        String key = CQ
+                .<Grouping<Object, T>, Object> query()
+                .from(grouped)
+                .transformDirect(
+                        new ResultTransformer<Grouping<Object, T>, Object>() {
+                            @Override
+                            public Object transform(Grouping<Object, T> arg0) {
+                                return arg0.getKey();
+                            }
+                        }).list().toString().replaceAll("\\[|\\]", "");
+        return "(" + ((key.isEmpty()) ? "0" : key) + ")";
+
+    }
+
+    protected List<Map> loadGenerigMap(String strQuery) {
+        List<Map> lstResult = new ArrayList<Map>();
+        Map obj;
+        SQLiteDatabase objDb = this.getReadableDatabase();
+        Cursor cursor = null;
+        try {
+            cursor = objDb.rawQuery(strQuery, new String[] {});
+            if (cursor != null) {
+                while (cursor.moveToNext()) {
+                    obj = new HashMap();
+                    for (int index = 0; index < cursor.getColumnCount(); index++) {
+                        obj.put(cursor.getColumnName(index),
+                                cursor.getString(index));
+                    }
+                    lstResult.add(obj);
+                }
+                cursor.close();
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+        objDb.close();
+        this.close();
+        return lstResult;
+    }
+
+    private List<Field> getListField(Class<T> type) {
+        Field[] superFields = type.getSuperclass().getDeclaredFields();
+        Field[] fields = type.getDeclaredFields();
+        List<Field> listFields = new ArrayList<Field>();
+        for (Field field : superFields) {
+            if (!isIgnore(field)) {
+                listFields.add(field);
+            }
+        }
+        for (Field field : fields) {
+            if (!isIgnore(field)) {
+                listFields.add(field);
+            }
+        }
+        return listFields;
+    }
+
+    public String getTableName(Class<T> type) {
+
+        return  type.getSimpleName().toLowerCase();
+
+    }
+
+
+    public boolean clean() {
         SQLiteDatabase objDb = this.getWritableDatabase();
-        String table = entity.getClass().getCanonicalName().replace(entity.getClass().getPackage().getName() + ".", "").toLowerCase();
         try {
             objDb.beginTransaction();
-            objDb.delete(table, "", new String[]{});
+            objDb.delete(tableName, "", new String[]{});
             objDb.setTransactionSuccessful();
+            return true;
         } catch (Exception e) {
             Log.e(Application.tag, e.getMessage());
         } finally {
             objDb.endTransaction();
             objDb.close();
         }
+        return false;
     }
-
-    private static boolean Ignore(Field field) {
-        Annotation[] annotations = field.getAnnotations();
-        if (annotations.length > 0) {
-            for (Annotation annotation : annotations) {
-                if (annotation instanceof Ignore) {
-                    return true;
-                }
-            }
+    public boolean clean(String where) {
+        SQLiteDatabase objDb = this.getWritableDatabase();
+        try {
+            objDb.beginTransaction();
+            objDb.execSQL("delete from " + tableName+" where "+where);
+            //  objDb.delete(tableName, where, new String[]{});
+            objDb.setTransactionSuccessful();
+            return true;
+        } catch (Exception e) {
+            Log.e(Application.tag, e.getMessage());
+        } finally {
+            objDb.endTransaction();
+            objDb.close();
         }
         return false;
     }
 
+    private static boolean isIgnore(Field field) {
+        return field.getAnnotation(Ignore.class) != null;
+    }
+    public boolean save(List<Entity> list, Action action) {
+        for (Entity entity : list) {
+            entity.setAction(action);
+            if (!save(entity)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+
     public boolean save(Entity entity) {
-        boolean result = false;
+        if (entity.getAction().equals(Action.None)) {
+            Log.e(Application.tag, "No se asigno un action a la entidad");
+            return false;
+        }
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values;
-        String table = entity.getClass().getCanonicalName().replace(entity.getClass().getPackage().getName() + ".", "").toLowerCase();
+        long resultid = -1;
         try {
             db.beginTransaction();
-            values = new ContentValues();
-            Field[] fields = entity.getClass().getDeclaredFields();
-            Field[] superFields = entity.getClass().getSuperclass().getDeclaredFields();
-            List<Field> listFields = new ArrayList<Field>();
-            listFields.addAll(Arrays.asList(fields));
-            listFields.addAll(Arrays.asList(superFields));
-            fields = new Field[listFields.size()];
-            fields = listFields.toArray(fields);
-            for (Field field : fields) {
-                PropertyDescriptor prop;
-                try {
-                    prop = new PropertyDescriptor(field.getName(), entity.getClass());
-                } catch (NullPointerException e) {
-                    prop = new PropertyDescriptor(field.getName(), entity.getClass().getSuperclass());
-                }
-                Method method = prop.getReadMethod();
-                Object value = method.invoke(entity);
-                if (value != null) {
-                    if (!Ignore(field)) {
-                        values.put(field.getName(), value.toString());
+            if (entity.getAction() == Action.Delete) {
+                resultid = db.delete(tableName, "id=?", new String[]{Long.toString(entity.getId())});
+            } else {
+                values = new ContentValues();
+                for (Field field : listFields) {
+                    PropertyDescriptor prop;
+                    try {
+                        prop = new PropertyDescriptor(field.getName(), entity.getClass());
+                    } catch (NullPointerException e) {
+                        prop = new PropertyDescriptor(field.getName(), entity.getClass().getSuperclass());
+                    }
+                    Method method = prop.getReadMethod();
+                    Object value = method.invoke(entity);
+                    if (value != null) {
+                        if (field.getType().equals(Date.class)) {
+                            values.put(field.getName(), dateFormat.format(value));
+                        } else {
+                            values.put(field.getName(), value.toString());
+                        }
                     }
                 }
+                if (entity.getAction().equals(Action.Insert)) {
+                    resultid = db.insert(tableName, null, values);
+                    entity.setId(resultid);
+
+                } else if (entity.getAction().equals(Action.Update)) {
+                    resultid = db.update(tableName, values, "id=?", new String[]{Long.toString(entity.getId())});
+                }
             }
-            if (entity.getAction().equals(Action.Insert)) {
-                entity.setId(db.insert(table, null, values));
-            } else if (entity.getAction().equals(Action.Update)) {
-                db.update(table, values, "id=?", new String[]{Long.toString(entity.getId())});
-            } else {
-                db.delete(table, "id=?", new String[]{Long.toString(entity.getId())});
+            if (resultid == -1) {
+                return false;
             }
             db.setTransactionSuccessful();
-            result = true;
+            return true;
         } catch (Exception e) {
             e.printStackTrace();
+            return false;
+
         } finally {
             db.endTransaction();
             db.close();
         }
-
-        return result;
     }
 
-    public static String getCreate(Entity entity) {
-        Field[] fields = entity.getClass().getDeclaredFields();
-        Field[] superFields = entity.getClass().getSuperclass().getDeclaredFields();
+    private boolean save(Entity entity,SQLiteDatabase db) {
+
+        ContentValues values;
+        long resultid = -1;
+        try {
+            if (entity.getAction() == Action.Delete) {
+                resultid = db.delete(tableName, "id=?", new String[]{Long.toString(entity.getId())});
+            } else {
+                values = new ContentValues();
+                for (Field field : listFields) {
+                    PropertyDescriptor prop;
+                    try {
+                        prop = new PropertyDescriptor(field.getName(), entity.getClass());
+                    } catch (NullPointerException e) {
+                        prop = new PropertyDescriptor(field.getName(), entity.getClass().getSuperclass());
+                    }
+                    Method method = prop.getReadMethod();
+                    Object value = method.invoke(entity);
+                    if (value != null) {
+                        values.put(field.getName(), value.toString());
+                    }
+                }
+                if (entity.getAction().equals(Action.Insert)) {
+                    resultid = db.insert(tableName, null, values);
+                    entity.setId(resultid);
+
+                } else if (entity.getAction().equals(Action.Update)) {
+
+                    resultid = db.update(tableName, values, "id=?", new String[]{Long.toString(entity.getId())});
+                }
+            }
+            if (resultid == -1) {
+                return false;
+            }
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+
+        }
+    }
+
+
+    public static <T extends Entity> String getCreate(Class<T> type) {
+       // String namePackage = type.getPackage().getName();
+        String tableName = type.getSimpleName().toLowerCase();
+
+        Field[] superFields = type.getSuperclass().getDeclaredFields();
+        Field[] fields = type.getDeclaredFields();
         List<Field> listFields = new ArrayList<Field>();
-        listFields.addAll(Arrays.asList(fields));
         listFields.addAll(Arrays.asList(superFields));
-        fields = new Field[listFields.size()];
-        fields = listFields.toArray(fields);
+        listFields.addAll(Arrays.asList(fields));
+
         List<Object> columns = new ArrayList<Object>();
         StringBuilder builder = new StringBuilder();
         builder.append("CREATE TABLE ");
-        builder.append(entity.getClass().getCanonicalName().replace(entity.getClass().getPackage().getName() + ".", "").toLowerCase());
+        builder.append(tableName);
+        String typeField = "";
         try {
-            for (Field field : fields) {
+            for (Field field : listFields) {
                 if (!(field.getName().equals("action"))) {
-                    if (!Ignore(field)) {
-                        Annotation[] annotations = field.getAnnotations();
-                        if (annotations.length > 0) {
-                            for (Annotation annotation : annotations) {
-                                if (annotation instanceof Key) {
-                                    columns.add(field.getName() + " integer NOT NULL PRIMARY KEY AUTOINCREMENT");
-                                } else if (annotation instanceof Nullable) {
-                                    columns.add(field.getName() + " text");
-                                } else {
-                                    columns.add(field.getName() + " text NOT NULL");
-                                }
-                            }
-                        } else {
-                            columns.add(field.getName() + " text");
+                    if (!isIgnore(field)) {
+                        if (field.getAnnotation(Key.class) != null) {
+                            columns.add(field.getName() + " integer NOT NULL PRIMARY KEY AUTOINCREMENT");
+                            continue;
                         }
+                        if (field.getType().equals(Double.class)) {
+                            typeField = "NUMERIC";
+                        } else if (field.getType().equals(Float.class)) {
+                            typeField = "FLOAT";
+                        }else if (field.getType().equals(Long.class)) {
+                            typeField = "integer";
+                        }
+                        else if (field.getType().equals(Integer.class)) {
+                            typeField = "INTEGER";
+                        } else if (field.getType().equals(Date.class)) {
+                            typeField = "DATETIME";
+                        } else {
+                            typeField = "TEXT";
+                        }
+                        if (field.getAnnotation(Nullable.class) != null) {
+                            columns.add(field.getName() + " " + typeField);
+                            continue;
+                        }
+                        columns.add(field.getName() + " " + typeField + " NOT NULL");
                     }
                 }
 
             }
             builder.append(concatKeys(columns));
+            Log.i(Application.tag, builder.toString());
             return builder.toString();
         } catch (Exception e) {
             Log.e(Application.tag, e.getMessage());
@@ -169,6 +399,7 @@ public abstract class Wrapper<T> extends SQLiteOpenHelper {
     }
 
     protected List<T> list(String query) {
+        Log.i(Application.tag,"-->"+query);
         List<T> lstResult = new ArrayList<T>();
         SQLiteDatabase objDb = this.getReadableDatabase();
         Cursor cursor = null;
@@ -176,7 +407,7 @@ public abstract class Wrapper<T> extends SQLiteOpenHelper {
             cursor = objDb.rawQuery(query, new String[]{});
             if (cursor != null) {
                 while (cursor.moveToNext()) {
-                    lstResult.add(this.load(cursor));
+                    lstResult.add((T) this.load(cursor));
                 }
                 cursor.close();
             }
@@ -216,6 +447,7 @@ public abstract class Wrapper<T> extends SQLiteOpenHelper {
             if (cursor != null) {
                 cursor.close();
             }
+
         }
         objDb.close();
         this.close();
@@ -225,51 +457,62 @@ public abstract class Wrapper<T> extends SQLiteOpenHelper {
     public T load(Cursor cursor) {
         T obj = null;
         try {
-            obj = type.newInstance();
+            obj = (T) type.newInstance();
 
-            Field[] fields = obj.getClass().getDeclaredFields();
-            Field[] superFields = obj.getClass().getSuperclass().getDeclaredFields();
-            List<Field> listFields = new ArrayList<Field>();
-            listFields.addAll(Arrays.asList(fields));
-            listFields.addAll(Arrays.asList(superFields));
             for (Field field : listFields) {
-                if (!Ignore(field)) {
-                    PropertyDescriptor prop;
-                    try {
-                        prop = new PropertyDescriptor(field.getName(), obj.getClass());
-                    } catch (NullPointerException e) {
-                        prop = new PropertyDescriptor(field.getName(), obj.getClass().getSuperclass());
-                    }
-                    Method method = prop.getWriteMethod();
+                PropertyDescriptor prop;
+                try {
+                    prop = new PropertyDescriptor(field.getName(), obj.getClass());
+                } catch (NullPointerException e) {
+                    prop = new PropertyDescriptor(field.getName(), obj.getClass().getSuperclass());
+                }
+                Method method = prop.getWriteMethod();
 
-                    if (method != null) {
-                        Type type = field.getGenericType();
-                        if (type.toString().equals(String.class.toString())) {
-                            String value = cursor.getString(cursor.getColumnIndex(field.getName()));
-                            method.invoke(obj, value);
-                        } else if (type.toString().equals(Long.class.toString())) {
-                            Long value = cursor.getLong(cursor.getColumnIndex(field.getName()));
-                            method.invoke(obj, value);
-                        } else if (type.toString().equals(Integer.class.toString())) {
-                            Integer value = cursor.getInt(cursor.getColumnIndex(field.getName()));
-                            method.invoke(obj, value);
-                        } else if (type.toString().equals(Double.class.toString())) {
-                            Double value = cursor.getDouble(cursor.getColumnIndex(field.getName()));
-                            method.invoke(obj, value);
-                        } else if (type.toString().equals(Date.class.toString())) {
-                            String value = cursor.getString(cursor.getColumnIndex(field.getName()));
-                            if (value != null) {
-                                Date dateValue = new SimpleDateFormat("E MMM dd HH:mm:ss Z yyyy", Locale.US).parse(value);
-                                method.invoke(obj, dateValue);
-                            }
+                if (method != null) {
+                    Type type = field.getGenericType();
+                    if (type.toString().equals(String.class.toString())) {
+                        String value = cursor.getString(cursor.getColumnIndex(field.getName()));
+                        method.invoke(obj, new Object[]{value});
+                    } else if (type.toString().equals(Long.class.toString())) {
+                        Long value = null;
+                        if (!cursor.isNull(cursor.getColumnIndex(field.getName()))) {
+                            value = cursor.getLong(cursor.getColumnIndex(field.getName()));
                         }
+                        method.invoke(obj, new Object[]{value});
+                    } else if (type.toString().equals(Integer.class.toString())) {
+                        Integer value = null;
+                        if (!cursor.isNull(cursor.getColumnIndex(field.getName()))) {
+                            value = cursor.getInt(cursor.getColumnIndex(field.getName()));
+                        }
+                        method.invoke(obj, new Object[]{value});
+                    } else if (type.toString().equals(Double.class.toString())) {
+                        Double value = null;
+                        if (!cursor.isNull(cursor.getColumnIndex(field.getName()))) {
+                            value = cursor.getDouble(cursor.getColumnIndex(field.getName()));
+                        }
+                        method.invoke(obj, new Object[]{value});
+                    } else if (type.toString().equals(Boolean.class.toString())) {
+                        Boolean value = false;
+                        if (!cursor.isNull(cursor.getColumnIndex(field.getName()))) {
+                            value = Boolean.parseBoolean(cursor.getString(cursor.getColumnIndex(field.getName())));
+                        }
+                        method.invoke(obj, new Object[]{value});
+                    } else if (type.toString().equals(Date.class.toString())) {
+                        String value = cursor.getString(cursor.getColumnIndex(field.getName()));
+                        if (value != null) {
+                            Date dateValue = dateFormat.parse(value);
+                            method.invoke(obj, new Object[]{dateValue});
+                        }
+
                     }
                 }
             }
+
+
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return obj;
+        return (T) obj;
     }
 
     protected static String concatKeys(List<Object> Llaves) {
@@ -285,7 +528,7 @@ public abstract class Wrapper<T> extends SQLiteOpenHelper {
             cursor = objDb.rawQuery(strQuery, new String[]{});
             if (cursor != null) {
                 while (cursor.moveToNext()) {
-                    entity = this.load(cursor);
+                    entity = (T) this.load(cursor);
                 }
                 cursor.close();
             }
@@ -298,71 +541,17 @@ public abstract class Wrapper<T> extends SQLiteOpenHelper {
         }
         objDb.close();
         this.close();
-        return entity;
-    }
-    protected List<Map> loadGenerigMap(String strQuery) {
-        List<Map> lstResult = new ArrayList<Map>();
-        Map obj;
-        SQLiteDatabase objDb = this.getReadableDatabase();
-        Cursor cursor = null;
-        try {
-            cursor = objDb.rawQuery(strQuery, new String[] {});
-            if (cursor != null) {
-                while (cursor.moveToNext()) {
-                    obj = new HashMap();
-                    for (int index = 0; index < cursor.getColumnCount(); index++) {
-                        obj.put(cursor.getColumnName(index),
-                                cursor.getString(index));
-                    }
-                    lstResult.add(obj);
-                }
-                cursor.close();
-            }
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        } finally {
-            if (cursor != null) {
-                cursor.close();
-            }
-        }
-        objDb.close();
-        this.close();
-        return lstResult;
-    }
-    @Override
-    public void onCreate(SQLiteDatabase db) {
-
-        db.execSQL(getCreate(new Customer()));
-        db.execSQL(getCreate(new User()));
-        db.execSQL(getCreate(new Empleado()));
-        db.execSQL(getCreate(new MsClasificador()));
-        db.execSQL(getCreate(new PsClasificador()));
-        db.execSQL(getCreate(new Pago()));
-        db.execSQL(getCreate(new Gasto()));
-        db.execSQL(getCreate(new HistorialPagos()));
+        return (T) entity;
     }
 
-    @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+    public T get(long id) {
+        return  get("select * from "+tableName+ " where id="+id);
     }
 
-    /*public <T extends Entity> String extract(List<T> list, String metodo) throws QueryException {
-        List<Grouping<Object, T>> grouped = (List<Grouping<Object, T>>) CQ
-                .<T, T> query(list).group().groupBy(metodo).list();
-        String key = CQ
-                .<Grouping<Object, T>, Object> query()
-                .from(grouped)
-                .transformDirect(
-                        new ResultTransformer<Grouping<Object, T>, Object>() {
-                            @Override
-                            public Object transform(Grouping<Object, T> arg0) {
-                                return arg0.getKey();
-                            }
-                        }).list().toString().replaceAll("\\[|\\]", "");
-        return "(" + ((key.isEmpty()) ? "0" : key) + ")";
 
-    }*/
+
+
+
     public SQLiteDatabase getConnection() {
         return connection;
     }
@@ -384,4 +573,5 @@ public abstract class Wrapper<T> extends SQLiteOpenHelper {
         connection.endTransaction();
         connection.close();
     }
+
 }

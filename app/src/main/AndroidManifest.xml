@@ -104,10 +104,40 @@
              android:parentActivityName=".activity.Main"
              android:screenOrientation="landscape"
              android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activity.ListPagoEmpleado"
+            android:label="@string/app_name"
+            android:parentActivityName=".activity.ListEmpleado"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activity.ListClientes"
+            android:label="@string/app_name"
+            android:parentActivityName=".activity.Main"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+        android:name=".activity.Cliente"
+        android:label="@string/app_name"
+        android:parentActivityName=".activity.ListClientes"
+        android:screenOrientation="landscape"
+        android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activity.Venta"
+            android:label="@string/app_name"
+            android:parentActivityName=".activity.ListClientes"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activity.ListCobros"
+            android:label="@string/app_name"
+            android:parentActivityName=".activity.ListClientes"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="adjustPan" />
 
          <!-- Location -->
         <service
-            android:name=".service.Position"
+            android:name=".service.SyncService"
             android:enabled="true"
             android:exported="true" />
 

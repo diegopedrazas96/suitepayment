@@ -96,7 +96,7 @@ public class ReporteHistorialPagos extends AppCompatActivity {
             row.setBackgroundColor((sw = !sw) ? Color.WHITE : Color.LTGRAY);
 
             txtCode = (TextView) row.findViewById(R.id.empCode);
-            String dateFormated = new SimpleDateFormat("dd/MM/yyyy HH:mm").format(obj.getFecha()).toString();
+            String dateFormated = new SimpleDateFormat("dd/MM/yyyy").format(obj.getFecha()).toString();
            // txtDate.setText(dateFormated);
             txtCode.setText(dateFormated);
 

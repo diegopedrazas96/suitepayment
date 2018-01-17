@@ -112,6 +112,31 @@
             android:focusable="false"
             android:focusableInTouchMode="false"
             android:weightSum="1">
+
+            <TextView
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:text="@string/tipo"
+                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"/>
+
+            <Spinner
+                android:id="@+id/spTipo"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.7"
+                android:ems="10"
+                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+                android:inputType="textCapCharacters" android:spinnerMode="dropdown"/>
+
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:visibility="gone"
+            android:weightSum="1">
             <TextView
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"

@@ -28,7 +28,7 @@
                 android:id="@+id/etDate"
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.55"
+                android:layout_weight="0.50"
                 android:ems="10"
                 android:inputType="textCapCharacters"
                 android:textSize="@dimen/components_size"/>
@@ -38,7 +38,7 @@
                 android:background="@drawable/curve_button"
                 android:textColor="@color/white"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.13"
+                android:layout_weight="0.18"
                 android:layout_gravity="right|center_vertical"
                 android:padding="0dp"
                 android:text="@string/date_title"
@@ -63,10 +63,46 @@
                     android:id="@+id/spSpendingType"
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.7"
+                    android:layout_weight="0.55"
                     android:ems="10"
                     android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
                     android:inputType="textCapCharacters" android:spinnerMode="dropdown"/>
+            <Button
+                android:id="@+id/btnResumen"
+                android:layout_width="wrap_content"
+                android:background="@drawable/curve_button"
+                android:textColor="@color/white"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.13"
+                android:visibility="gone"
+                android:layout_gravity="right|center_vertical"
+                android:padding="0dp"
+                android:text="@string/resume"
+                android:textSize="@dimen/components_size"/>
+
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:weightSum="1">
+
+            <TextView
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:text="@string/destino"
+                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"/>
+
+            <Spinner
+                android:id="@+id/spDestino"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.7"
+                android:ems="10"
+                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+                android:inputType="textCapCharacters" android:spinnerMode="dropdown"/>
 
         </TableRow>
         <TableRow
@@ -88,7 +124,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.7"
                     android:ems="10"
-                    android:hint="@string/description_hint"
+                    android:text="@string/description_hint"
                     android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
                     android:inputType="textCapCharacters" />
 
@@ -112,9 +148,9 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.7"
                     android:ems="10"
-                    android:hint="@string/amount_hint"
+                    android:text="@string/cero"
                     android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
-                    android:inputType="number"/>
+                    android:inputType="numberDecimal"/>
 
         </TableRow>
         <TableRow

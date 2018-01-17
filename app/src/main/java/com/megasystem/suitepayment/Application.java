@@ -3,14 +3,15 @@ package com.megasystem.suitepayment;
 import android.content.Intent;
 import android.location.Location;
 import android.util.Log;
-import com.megasystem.suitepayment.service.Position;
+
+import com.megasystem.suitepayment.service.SyncService;
 
 
 public class Application extends android.app.Application {
-    public final static String DataBaseName = "database6";
+    public final static String DataBaseName = "database";
     public final static String tag = "Megasystem";
-    public final static int locationUpdateTime = 50000;
-    public final static int locationMinDistance = 20;
+   // public final static int locationUpdateTime = 50000;
+  //  public final static int locationMinDistance = 20;
    // public static SharedPreferences prefs = getSharedPreferences("settings", Context.MODE_PRIVATE);
    // public final static String webServices = "http://localhost:51300";
    // public final static String webServices = "http://192.168.0.201/mega";
@@ -35,15 +36,14 @@ public class Application extends android.app.Application {
                 handleUncaughtException(thread, e);
             }
         });
-        Log.i(Application.tag, "Iniciando Servicio");
-        serviceIntent = new Intent(this, Position.class);
+        serviceIntent = new Intent(this, SyncService.class);
         startService(serviceIntent);
     }
 
     @Override
     public void onTerminate() {
         super.onTerminate();
-        stopService(serviceIntent);
+
     }
 
     public void handleUncaughtException(Thread thread, Throwable e) {

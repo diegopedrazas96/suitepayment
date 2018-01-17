@@ -678,6 +678,7 @@ public class ListGenerateSalary extends AppCompatActivity {
 
                             public void onClick(DialogInterface arg0, int arg1) {
                                 DHistorialPagos dalHistorialPagos = new DHistorialPagos(ListGenerateSalary.this,HistorialPagos.class);
+                                int registros=0;
                                 for (Empleado objEmpleado : lstEmpleados){
                                     HistorialPagos objHistorialPago ;
                                     objHistorialPago = dalHistorialPagos.getByEmpleadoAndPeriod(objEmpleado.getId(),gestion.get(spPeriodType.getSelectedItemPosition()).getId(),periodo.get(spMonthType.getSelectedItemPosition()).getId());
@@ -692,6 +693,8 @@ public class ListGenerateSalary extends AppCompatActivity {
                                         objHistorialPago.setPagado(0D);
                                         objHistorialPago.setSaldo(objEmpleado.getSalario());
                                         dalHistorialPagos.save(objHistorialPago);
+                                        registros= registros + 1;
+                                        Toast.makeText(ListGenerateSalary.this, registros + " Registros Ingresados Correctamente.",Toast.LENGTH_LONG).show();
                                     }else{
                                         Toast.makeText(ListGenerateSalary.this,"Ya existe registro de planilla para el empleado - " + objEmpleado.getNombre() + " para este mes y gestion.",Toast.LENGTH_LONG).show();
                                     }

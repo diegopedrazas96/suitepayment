@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/pagar" android:title="@string/pagar"/>
+    <item android:id="@+id/habilitar" android:title="@string/activar"/>
+    <item android:id="@+id/ver" android:title="@string/ver_pagos"/>
+    <item android:id="@+id/bono" android:title="@string/bono"/>
+    <item android:id="@+id/editar" android:title="@string/edit"/>
+
+</menu>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" xmlns:materialdesign="http://schemas.android.com/apk/res-auto"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        tools:context="com.megasystem.suitepayment.activity.ListEmpleado">
+        <TableRow
+            android:id="@+id/rowTop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#777"
+            android:weightSum="1" >
+
+
+
+                <TextView
+                    android:id="@+id/total"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.3"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+                    android:text="@string/date_title"
+                    android:textColor="#FFF"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:layout_weight="0.4"
+                    android:text="@string/description"
+                    android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+                    android:textColor="#FFF" />
+                <TextView
+                    android:id="@+id/saldo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:layout_weight="0.3"
+                    android:text="@string/total_header"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#FFF" />
+        </TableRow>
+    <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/listView"
+        android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+        android:layout_below="@+id/rowTop" />
+
+</RelativeLayout>

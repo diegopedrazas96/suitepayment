@@ -15,6 +15,7 @@ public class Gasto extends Entity implements Serializable{
     private Date fecha;
     private String descripcion;
     private Double monto;
+    private Long destinoIdc;
     @Ignore
     private PsClasificador TipoGasto;
 
@@ -56,5 +57,13 @@ public class Gasto extends Entity implements Serializable{
 
     public void setMonto(Double monto) {
         this.monto = monto;
+    }
+
+    public Long getDestinoIdc() {
+        return destinoIdc;
+    }
+
+    public void setDestinoIdc(Long destinoIdc) {
+        this.destinoIdc = destinoIdc;
     }
 }

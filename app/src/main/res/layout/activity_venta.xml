@@ -1,0 +1,193 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+
+            android:layout_alignParentTop="true"
+            android:orientation="vertical">
+
+
+
+        <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:weightSum="1">
+            <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.28"
+                    android:text="@string/date"
+                    android:textSize="@dimen/components_size"/>
+
+            <EditText
+                    android:id="@+id/etDate"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.60"
+                    android:ems="10"
+                    android:inputType="textCapCharacters"
+                android:textSize="@dimen/components_size"/>
+            <Button
+                android:id="@+id/btnDate"
+                android:layout_width="wrap_content"
+                android:background="@drawable/curve_button"
+                android:textColor="@color/white"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.1"
+                android:layout_gravity="right|center_vertical"
+                android:padding="0dp"
+                android:text="@string/date_title"
+                android:textSize="@dimen/components_size"/>
+
+        </TableRow>
+        <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:weightSum="1">
+            <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.25"
+                    android:text="@string/cliente"
+                android:textSize="@dimen/components_size"/>
+
+            <EditText
+                    android:id="@+id/etCliente"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.75"
+                    android:ems="10"
+                    android:inputType="textCapCharacters"
+                android:textSize="@dimen/components_size"/>
+
+
+        </TableRow>
+
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:weightSum="1">
+            <TextView
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:text="@string/description"
+                android:textSize="@dimen/components_size"/>
+
+            <EditText
+                android:id="@+id/etDescripcion"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.75"
+                android:ems="10"
+                android:hint="@string/write_description"
+                android:textSize="@dimen/components_size"
+                android:inputType="textCapCharacters"/>
+
+        </TableRow>
+        <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:weightSum="1">
+            <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.25"
+                    android:text="@string/amount_text"
+                android:textSize="@dimen/components_size"/>
+
+            <EditText
+                    android:id="@+id/etMonto"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.75"
+                    android:ems="10"
+                    android:text="0"
+                    android:hint="@string/valor_cero"
+                android:textSize="@dimen/components_size"
+                    android:inputType="number"/>
+
+        </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:weightSum="1">
+                    <TextView
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.25"
+                        android:id="@+id/tvAnticipo"
+                        android:text="@string/anticipo"
+                        android:textSize="@dimen/components_size"/>
+
+                    <EditText
+                        android:id="@+id/etAnticipo"
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.75"
+                        android:ems="10"
+                        android:text="0"
+                        android:hint="@string/valor_cero"
+                        android:textSize="@dimen/components_size"
+                        android:inputType="number"/>
+
+            </TableRow>
+        <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:weightSum="1">
+
+        </TableRow>
+
+
+    </LinearLayout>
+
+    <TableRow
+            android:id="@+id/tableRow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="0dp"
+            android:baselineAligned="true"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+
+            android:weightSum="1" android:layout_alignParentBottom="true">
+
+        <com.gc.materialdesign.views.ButtonRectangle
+                android:id="@+id/btnCancel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/status_cancel"
+                android:layout_weight="0.5"
+            android:textSize="@dimen/button_size"
+                android:text="@string/cancel" />
+
+        <com.gc.materialdesign.views.ButtonRectangle
+                android:id="@+id/btnSave"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+            android:textSize="@dimen/button_size"
+                android:background="@color/status_inprocess"
+                android:layout_weight="0.5"
+                android:text="@string/save" />
+    </TableRow>
+
+
+</RelativeLayout>

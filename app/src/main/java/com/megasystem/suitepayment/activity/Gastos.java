@@ -21,21 +21,26 @@ import com.megasystem.suitepayment.entity.Action;
 import com.megasystem.suitepayment.entity.sale.PsClasificador;
 import com.megasystem.suitepayment.util.Util;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 public class Gastos extends AppCompatActivity {
     private EditText etDate;
     private Spinner spSpendingType;
+    private Spinner spDestino;
     private EditText etDescripcion;
     private EditText etMonto;
     private ButtonRectangle btnGuardar;
     private ButtonRectangle btnCancelar;
     private Button btnDate;
+    private Button btnResume;
     private Dialog dateDialog;
     private List<PsClasificador> lstPsGastos;
+    private List<PsClasificador> lstPsDestino;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,30 +49,23 @@ public class Gastos extends AppCompatActivity {
         etDate = (EditText) findViewById(R.id.etDate);
         etDate.setText(new SimpleDateFormat("dd/MM/yyyy HH:mm").format(new Date()));
         etDate.setEnabled(false);
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         etDescripcion = (EditText) findViewById(R.id.etDescripcion);
         etMonto = (EditText) findViewById(R.id.etMonto);
         spSpendingType = (Spinner) findViewById(R.id.spSpendingType);
+        spDestino = (Spinner) findViewById(R.id.spDestino);
         btnGuardar = (ButtonRectangle) findViewById(R.id.btnSave);
         btnCancelar = (ButtonRectangle) findViewById(R.id.btnCancel);
+        btnResume = (Button) findViewById(R.id.btnResumen);
         try {
             btnDate = (Button) findViewById(R.id.btnDate);
         }catch (Exception e){
             Log.e("GASTOS",e.toString());
         }
 
-        DPsClasificador dalProduct = new DPsClasificador(this,PsClasificador.class);
-        lstPsGastos =  dalProduct.listbyMsClasifier(3L);
+
         loadDialogDate();
-        String[] gastoArray = new String[lstPsGastos.size()];
-        int i = 0;
-        for (PsClasificador obj : lstPsGastos) {
-            gastoArray[i] = obj.getDescripcion();
-             i++;
-        }
-        ArrayAdapter<String> sCityAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, gastoArray);
-        sCityAdapter.setDropDownViewResource(R.layout.spinner_dropdown);
-        spSpendingType.setAdapter(sCityAdapter);
+        loadSpinner();
         btnDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,10 +77,25 @@ public class Gastos extends AppCompatActivity {
             public void onClick(View view) {
                 DGasto dalGasto = new DGasto(Gastos.this, com.megasystem.suitepayment.entity.sale.Gasto.class);
                 com.megasystem.suitepayment.entity.sale.Gasto gasto = new com.megasystem.suitepayment.entity.sale.Gasto();
+//                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+//                StringBuilder fecha = new StringBuilder();
+//                Calendar gregorianCalendar = new GregorianCalendar();
+//                Date vpstatusdate = null;
+//                fecha.append(String.valueOf(gregorianCalendar.get(Calendar.YEAR)))
+//                        .append("-")
+//                        .append(gregorianCalendar.get(Calendar.MONTH)+1)
+//                        .append("-")
+//                        .append(gregorianCalendar.get(Calendar.DAY_OF_MONTH));
+//                try {
+//                     vpstatusdate = formatter.parse(fecha.toString());
+//                } catch (ParseException e) {
+//                    e.printStackTrace();
+//                }
                 gasto.setFecha(new Date());
                 gasto.setDescripcion(etDescripcion.getText().toString());
                 gasto.setMonto(Double.valueOf(etMonto.getText().toString()));
                 gasto.setTipoIdc(lstPsGastos.get(spSpendingType.getSelectedItemPosition()).getId());
+                gasto.setDestinoIdc(lstPsDestino.get(spDestino.getSelectedItemPosition()).getId());
                 gasto.setAction(Action.Insert);
                 dalGasto.save(gasto);
                 limpiar();
@@ -98,7 +111,40 @@ public class Gastos extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        btnResume.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+            }
+        });
+    }
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return false;
+    }
+    private void loadSpinner(){
+        DPsClasificador dalProduct = new DPsClasificador(this,PsClasificador.class);
+        lstPsGastos =  dalProduct.listbyMsClasifier(3L);
+        lstPsDestino =  dalProduct.listbyMsClasifier(4L);
+        String[] gastoArray = new String[lstPsGastos.size()];
+        String[] destinoArray = new String[lstPsDestino.size()];
+        int i = 0;
+        for (PsClasificador obj : lstPsGastos) {
+            gastoArray[i] = obj.getDescripcion();
+            i++;
+        }
+        i= 0;
+        for (PsClasificador obj : lstPsDestino) {
+            destinoArray[i] = obj.getDescripcion();
+            i++;
+        }
+        ArrayAdapter<String> sCityAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, gastoArray);
+        sCityAdapter.setDropDownViewResource(R.layout.spinner_dropdown);
+        spSpendingType.setAdapter(sCityAdapter);
+        ArrayAdapter<String> sDestinoAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, destinoArray);
+        sDestinoAdapter.setDropDownViewResource(R.layout.spinner_dropdown);
+        spDestino.setAdapter(sDestinoAdapter);
     }
     private void loadDialogDate(){
         dateDialog = new Dialog(Gastos.this);

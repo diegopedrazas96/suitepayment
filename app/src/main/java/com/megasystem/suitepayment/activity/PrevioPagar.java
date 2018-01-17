@@ -42,10 +42,12 @@ public class PrevioPagar extends AppCompatActivity {
     private Long gestionIdc;
     private List<Map> lstPeriodos;
     private TextView total;
+    private TextView tvGestion;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_previo_pagar);
+        tvGestion = (TextView) findViewById(R.id.tvGestion);
         total = (TextView) findViewById(R.id.total);
         btnSelect = (ButtonRectangle) findViewById(R.id.btnSelect);
         btnSelect.setOnClickListener(new View.OnClickListener() {
@@ -93,7 +95,7 @@ public class PrevioPagar extends AppCompatActivity {
 
             txtSaldo = (TextView) row.findViewById(R.id.tvSaldo);
             txtSaldo.setText(Util.formatDouble(Double.valueOf(obj.get("saldo").toString())));
-             row.setTag(R.id.add, obj.get("id"));
+             row.setTag(R.id.add,Long.parseLong(obj.get("Id").toString()));
             // row.setTag(R.id.clientName, i);
 
 
@@ -117,9 +119,10 @@ public class PrevioPagar extends AppCompatActivity {
                             .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
 
                                 public void onClick(DialogInterface arg0, int arg1) {
-                                    Long periodoIdc = Long.parseLong(v.getTag(R.id.add).toString());
+                                    Long periodoIdc = (Long) v.getTag(R.id.add);
                                     com.megasystem.suitepayment.entity.sale.Empleado empleado = new com.megasystem.suitepayment.entity.sale.Empleado();
                                     Intent intent = new Intent(PrevioPagar.this,Pagos.class);
+                                    intent.putExtra("actionForm",2);
                                     intent.putExtra("gestionIdc",gestionIdc);
                                     intent.putExtra("periodoIdc",periodoIdc);
                                     intent.putExtra("empleado",empleado);
@@ -155,10 +158,12 @@ public class PrevioPagar extends AppCompatActivity {
         dialogGestion = new Dialog(PrevioPagar.this);
         dialogGestion.setContentView(R.layout.search_empleado);
         dialogGestion.setTitle(getString(R.string.period));
+        TextView tvText = (TextView) dialogGestion.findViewById(R.id.tvOverSearch);
         EditText edtSearchP = (EditText) dialogGestion.findViewById(R.id.edtSearchP);
         TextView txtNumber = (TextView) dialogGestion.findViewById(R.id.textNumber);
         edtSearchP.setVisibility(View.INVISIBLE);
         txtNumber.setVisibility(View.INVISIBLE);
+        tvText.setText("Gestión");
         loadGestion();
 
 
@@ -222,16 +227,18 @@ public class PrevioPagar extends AppCompatActivity {
             txtSaldo.setText(Util.formatDouble(Double.parseDouble(obj.get("saldo").toString())));
 
 
+            Long gestiIdc = Long.parseLong(obj.get("Id").toString());
 
-
-            view.setTag(R.id.add, obj.get("id"));
-
+            view.setTag(R.id.agregar, gestiIdc);
+            view.setTag(R.id.add, obj.get("gestion").toString());
             view.setOnTouchListener(new View.OnTouchListener() {
 
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
                     if (event.getAction() == MotionEvent.ACTION_UP) {
-                        gestionIdc = (Long) v.getTag(R.id.add);
+                        gestionIdc = (Long) v.getTag(R.id.agregar);
+                        String gestion = (String) v.getTag(R.id.add);
+                        tvGestion.setText(getString(R.string.period)  + " - " + gestion);
                         loadGrid(gestionIdc);
                         searchDialogEmpleado.dismiss();
                         return true;

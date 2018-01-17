@@ -36,7 +36,7 @@ public class Clasificadores extends AppCompatActivity {
         btnFloat = (ButtonFloat) findViewById(R.id.add);
         DMsClasificador dalMsClasificador = new DMsClasificador(this,MsClasificador.class);
         lstMsClasificador = dalMsClasificador.list();
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         lvMsClasifier.setAdapter(new Adapter(Clasificadores.this, lstMsClasificador));
         lvMsClasifier.setOnItemClickListener(new DrawerItemClickListener());
         //lvMsClasifier.setAdapter();
@@ -74,6 +74,11 @@ public class Clasificadores extends AppCompatActivity {
                 dialog.show();
             }
         });
+    }
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return false;
     }
     private void updateList(){
 

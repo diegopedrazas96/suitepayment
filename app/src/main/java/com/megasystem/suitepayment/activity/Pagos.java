@@ -81,11 +81,12 @@ public class Pagos extends AppCompatActivity {
             loadSearchEmpleados();
         }
         if (actionForm ==2){
-            loadSpinner();
+
             gestionIdc= getIntent().getExtras().getLong("gestionIdc");
             periodoIdc= getIntent().getExtras().getLong("periodoIdc");
             empleado = (com.megasystem.suitepayment.entity.sale.Empleado) getIntent().getSerializableExtra("empleado");
             if(empleado.getId() != null){
+                loadSpinner();
                 etEmpleado.setText(empleado.getNombre());
                 btnSearch.setEnabled(false);
                 DHistorialPagos dalHistorialPagos = new DHistorialPagos(Pagos.this,HistorialPagos.class);
@@ -94,6 +95,8 @@ public class Pagos extends AppCompatActivity {
                 if (objHistorialPago.getId() != null){
                     etSaldo.setText(Util.formatDouble(objHistorialPago.getSaldo()));
                     etSaldo.setEnabled(false);
+                    tvSaldo.setVisibility(View.VISIBLE);
+                    etSaldo.setVisibility(View.VISIBLE);
                 }
             }else{
                 loadSpinner();
@@ -234,6 +237,7 @@ public class Pagos extends AppCompatActivity {
         });
 
     }
+
     private void  limpiarCampos(){
         etEmpleado.setText("");
         etMonto.setText("");
@@ -271,9 +275,9 @@ public class Pagos extends AppCompatActivity {
         DEmpleado data = new DEmpleado(this, com.megasystem.suitepayment.entity.sale.Empleado.class);
         List<Empleado> lstProducts = null;
         if (filter.length()==0 ){
-            lstProducts = data.list();
+            lstProducts = data.list(periodoIdc,gestionIdc);
         }else{
-            lstProducts = data.listBy( filter, new String[]{});
+            lstProducts = data.listBy( filter, new String[]{},periodoIdc,gestionIdc);
         }
         txtNumber.setText(lstProducts.size() + " " + getString(R.string.registries));
         LazyAdapterProduct adapter = new LazyAdapterProduct(this, dialogEmpleado, lstProducts);

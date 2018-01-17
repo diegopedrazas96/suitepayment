@@ -2,7 +2,7 @@
               xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-
+              android:background="@drawable/campo_fondo"
               android:gravity="center"
               android:orientation="vertical"
               >
@@ -12,7 +12,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-
             android:fillViewport="true"
             android:gravity="center" >
 
@@ -22,10 +21,10 @@
                 android:layout_height="wrap_content"
                 android:columnWidth="46dp"
                 android:gravity="center"
-                android:horizontalSpacing="10dp"
-                android:numColumns="3"
-                android:stretchMode="columnWidth"
-                android:verticalSpacing="10dp" >
+                android:horizontalSpacing="15dp"
+                android:numColumns="4"
+
+                android:verticalSpacing="15dp" >
         </GridView>
     </RelativeLayout>
 

@@ -39,7 +39,7 @@
                 android:layout_height="112dp"
                     android:layout_weight="0.27"
                     android:text="@string/date_title"
-                    android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+                android:textSize="24dp"
                     />
 
 
@@ -57,7 +57,7 @@
                     android:layout_height="112dp"
                     android:layout_weight="0.27"
                     android:text="@string/date_title"
-                    android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+                android:textSize="24dp"
                     />
 
             <com.gc.materialdesign.views.ButtonRectangle

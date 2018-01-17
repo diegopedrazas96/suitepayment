@@ -32,6 +32,7 @@
     <string name="icon_empleado2">&#xf2bd;</string>
     <string name="icon_gastos">&#xf09d;</string>
     <string name="icon_clasificadores">&#xf00b;</string>
+    <string name="icon_clientes">&#xf0c0;</string>
     <string name="icon_configuracion">&#xf1c0;</string>
     <string name="icon_reporte">&#xf080;</string>
     <string name="pagar">Pagar</string>
@@ -68,6 +69,7 @@
     <string name="sale_product">Vender</string>
     <string name="date">Fecha:</string>
     <string name="date_title">Fecha</string>
+    <string name="resume">Resumen</string>
     <string name="loading">Cargando</string>
     <string name="write_description">Escribir Descripción.</string>
     <string name="synchronizing">Sincronizando</string>
@@ -121,6 +123,7 @@
     <string name="pick_address">Dirección para la entrega</string>
     <string name="pick_date">Seleccionar Fecha</string>
     <string name="accept">Aceptar</string>
+    <string name="tipo">Tipo</string>
     <string name="customer">Cliente:</string>
     <string name="order_saved">Su pedido ha sido recibido, Muchas gracias!!!</string>
     <string name="order_no_saved">Su pedido no ha podido ser enviado, intente nuevamente!!!</string>
@@ -202,4 +205,23 @@
     <string name="title_activity_configuration">Configuration</string>
     <string name="message_backup_finish">Backup Creado</string>
     <string name="message_no_backup">Backup No Creado</string>
+    <string name="cliente">Cliente</string>
+    <string name="list_clientes">Lista de Clientes</string>
+    <string name="clientes">Clientes</string>
+    <string name="anticipo">Anticipo</string>
+    <string name="venta">Ventas</string>
+    <string name="icon_venta"><![CDATA[&#xf155;]]></string>
+    <string name="cobros">Cobros</string>
+    <string name="cobrar">Cobrar</string>
+    <string name="anular">Anular</string>
+    <string name="list_ventas">Listado de Ventas</string>
+    <string name="question_anulate">Desea anular el registro?</string>
+    <string name="destino">Destino</string>
+    <string name="activar">Habilitar/Deshabilitar</string>
+    <string name="question_activate_employee">Desea habilitar o deshabilitar al empleado</string>
+    <string name="cero">0</string>
+    <string name="ver_pagos">Ver Pagos</string>
+    <string name="list_pagos">Listado de Pagos</string>
+    <string name="total_header">Total</string>
+    <string name="bono">Agregar Bono</string>
 </resources>

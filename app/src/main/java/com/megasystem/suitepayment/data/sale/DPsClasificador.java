@@ -18,25 +18,25 @@ public class DPsClasificador extends Wrapper {
 
     @SuppressWarnings("unchecked")
     public List<PsClasificador> list() {
-        return super.list("select * from psclasificador");
+        return super.list("select * from" + tableName);
     }
 
     @SuppressWarnings("unchecked")
     public List<PsClasificador> list(int clasificadorId) {
-        return super.list("select * from psclasificador where msclasificadorid= " + clasificadorId);
+        return super.list("select * from "+tableName +" where msclasificadorid= " + clasificadorId);
     }
     public List<PsClasificador> listbyMsClasifier(Long id) {
-        return super.list("select * from psclasificador where msclasificadorid= " + id);
+        return super.list("select * from "+tableName +" where msclasificadorid= " + id);
     }
 
     public List<PsClasificador> listById(Long id) {
-        return super.list("select * from psclasificador where id= " + id);
+        return super.list("select * from "+tableName +" where id= " + id);
     }
     public PsClasificador get() {
-        return (PsClasificador) this.get("select * from psclasificador");
+        return (PsClasificador) this.get("select * from "+tableName +"");
     }
 
     public PsClasificador getById(Long id) {
-        return (PsClasificador) this.get("select * from psclasificador where id= " + id );
+        return (PsClasificador) this.get("select * from "+tableName +" where id= " + id );
     }
 }

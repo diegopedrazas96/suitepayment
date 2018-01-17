@@ -3,6 +3,7 @@ package com.megasystem.suitepayment.data.sale;
 import android.content.Context;
 import com.megasystem.suitepayment.data.Wrapper;
 import com.megasystem.suitepayment.entity.sale.Empleado;
+import com.megasystem.suitepayment.service.MyReceiver;
 
 import java.util.List;
 
@@ -17,9 +18,19 @@ public class DEmpleado extends Wrapper {
         super(context, type);
     }
 
+
     @SuppressWarnings("unchecked")
     public List<Empleado> list() {
+        return super.list("select * from empleado where estado =1");
+    }
+    public List<Empleado> listIncrement() {
+        return super.list("select * from empleado where estado =1 and tipoidc <> 28");
+    }
+    public List<Empleado> listAll() {
         return super.list("select * from empleado");
+    }
+    public List<Empleado> list(Long periodoIdc, Long gestionIdc) {
+        return super.list("select e.* from empleado e inner join historialpagos h on h.empleadoId = e.Id where h.periodoIdc =" +periodoIdc + " and h.gestionIdc=" + gestionIdc );
     }
 
     @SuppressWarnings("unchecked")
@@ -40,6 +51,16 @@ public class DEmpleado extends Wrapper {
 
         //  loadRelations(list,relation);
         return super.list("SELECT * FROM empleado WHERE  nombre LIKE '%"+filter+"%'");
+        //return list;
+    }
+    public List<Empleado> listBy( String filter,String [] relation,Long periodoIdc, Long gestionIdc) {
+        //List list =null;
+        //list = super.list("SELECT * FROM empleado WHERE  nombre LIKE '%"+filter+"%')");
+
+        //  loadRelations(list,relation);
+        return super.list(" select e.* from empleado e inner join historialpagos h on h.empleadoId = e.Id where h.periodoIdc =" +periodoIdc + " and h.gestionIdc=" + gestionIdc + " and e.nombre LIKE '%"+filter+"%' ");
+
+
         //return list;
     }
  /*   protected void loadRelations(List<Empleado> lstObj, String[] Relaciones) throws QueryException {

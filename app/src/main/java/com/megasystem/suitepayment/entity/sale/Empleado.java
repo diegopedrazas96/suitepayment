@@ -1,33 +1,43 @@
 package com.megasystem.suitepayment.entity.sale;
 
+import android.content.Intent;
+import android.support.annotation.Nullable;
+
 import com.megasystem.suitepayment.entity.Entity;
+import com.megasystem.suitepayment.entity.annotation.Ignore;
 
 /**
  * Created by usuario on 13/11/2016.
  */
 public class Empleado extends Entity {
 
-    private Long tipoIdc;
     private String nombre;
     private String direccion;
+    @Nullable
     private String telefono;
     private Double salario;
-    private int estado;
+    @Nullable
+    private Double montoAcumulado;
+    private Integer estado;
+    private Long tipoIdc;
+    @Ignore
+    private PsClasificador tipo;
 
-    public int getEstado() {
+
+    public PsClasificador getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(PsClasificador tipo) {
+        this.tipo = tipo;
+    }
+
+    public Integer getEstado() {
         return estado;
     }
 
-    public void setEstado(int estado) {
+    public void setEstado(Integer estado) {
         this.estado = estado;
-    }
-
-    public Long getTipoIdc() {
-        return tipoIdc;
-    }
-
-    public void setTipoIdc(Long tipoIdc) {
-        this.tipoIdc = tipoIdc;
     }
 
     public String getNombre() {
@@ -60,5 +70,21 @@ public class Empleado extends Entity {
 
     public void setSalario(Double salario) {
         this.salario = salario;
+    }
+
+    public Double getMontoAcumulado() {
+        return montoAcumulado;
+    }
+
+    public void setMontoAcumulado(Double montoAcumulado) {
+        this.montoAcumulado = montoAcumulado;
+    }
+
+    public Long getTipoIdc() {
+        return tipoIdc;
+    }
+
+    public void setTipoIdc(Long tipoIdc) {
+        this.tipoIdc = tipoIdc;
     }
 }
